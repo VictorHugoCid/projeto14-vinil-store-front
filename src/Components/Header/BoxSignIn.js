@@ -3,28 +3,28 @@ import { useContext } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function BoxSignIn(){
+export default function BoxSignIn() {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn} = useContext(GlobalContext);
+    const { isShownSignIn, setIsShownSignIn } = useContext(GlobalContext);
 
 
 
     return (
 
         <BoxSignInWrapper
-        onMouseEnter={() => setIsShownSignIn(true)}
-        onMouseLeave={() => setIsShownSignIn(false)}
-        isShownSignIn={isShownSignIn}
+            onMouseEnter={() => setIsShownSignIn(true)}
+            onMouseLeave={() => setIsShownSignIn(false)}
+            isShownSignIn={isShownSignIn}
         >
             <SignIn >
                 <Link to='/signin'>
-                Sign-in
+                    Sign-in
                 </Link>
             </SignIn>
 
             <SignUp >
                 <Link to='/signup'>
-                Sign-up
+                    Sign-up
                 </Link>
             </SignUp>
 
@@ -46,8 +46,8 @@ background-color: #cdd6f4;
 opacity: 0.95;
 
 position: fixed;
-top: 60px;
-right: 50px;
+top: ${props => props.isShownSignIn ? '60px' : '30px'};
+right: ${props => props.isShownSignIn ? '50px' : '80px'};
 opacity: ${props => props.isShownSignIn ? 0.98 : 0};
 z-index: 3;
 

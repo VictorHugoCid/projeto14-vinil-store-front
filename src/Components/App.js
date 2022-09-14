@@ -6,8 +6,7 @@ import globalContext from '../Context/globalContext';
 import SignIn from './SignIn/SignIn';
 import SingUp from './SignUp/SignUp';
 import Home from './Home/Home.js';
-// import Income from './Income/Income.js';
-// import Outcome from './Outcome/Outcome.js';
+import Cart from './Cart/Cart.js'
 // import UpdateRegister from './Update/UpdateRegister.js';
 
 export default function App() {
@@ -29,9 +28,8 @@ export default function App() {
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SingUp />} />
                         <Route path="/home" element={<Home />} />
-                        {/* <Route path="/income" element={<Income />} />
-                        <Route path="/outcome" element={<Outcome />} />
-                        <Route path="/updateRegister/:type/:id" element={<UpdateRegister/>} /> */}
+                        <Route path="/cart" element={<Cart/>}/>
+                        {/* <Route path="/updateRegister/:type/:id" element={<UpdateRegister/>} /> */}
                     </Routes>
                 </BrowserRouter>
             </globalContext.Provider>

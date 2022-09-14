@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { BsCartCheckFill } from 'react-icons/bs'
+import { FaShoppingCart } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import GlobalContext from "../../Context/globalContext";
 import { useContext } from "react";
 
 import BoxSignIn from "./BoxSignIn";
-import Cart from "./Cart";
+import HeaderCart from "./HeaderCart";
 
 
 export default function Header() {
@@ -19,7 +19,7 @@ export default function Header() {
     return (
         <HeaderWrapper>
             <BoxSignIn />
-            <Cart />
+            <HeaderCart />
             <MenuIcon
                 onMouseEnter={() => setIsShown(true)}
             // onMouseLeave={() => setIsShown(false)}
@@ -30,8 +30,7 @@ export default function Header() {
             </MenuIcon>
 
             <Title>
-                Header
-
+                Vinil-Store
             </Title>
             <Rigth>
 
@@ -45,7 +44,7 @@ export default function Header() {
                     Hello, sign-in.
                 </Link>
 
-                <BsCartCheckFill
+                <FaShoppingCart
                     onMouseEnter={() => {
                         setIsShownSignIn(false)
                         setIsShownCart(true)

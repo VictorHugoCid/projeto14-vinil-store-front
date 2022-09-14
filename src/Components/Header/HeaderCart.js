@@ -3,7 +3,7 @@ import { useContext } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Cart() {
+export default function HeaderCart() {
     const navigate = useNavigate()
     const { isShownCart, setIsShownCart } = useContext(GlobalContext);
 

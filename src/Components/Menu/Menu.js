@@ -23,7 +23,7 @@ export default function Menu() {
 }
 
 const MenuWrapper = styled.div`
-width: 40vw;
+width: 250px;
 height: 100vh;
 top: 60px;
 
@@ -32,8 +32,8 @@ opacity: 0.98;
 
 position: fixed;
 left: 0;
-left:${props => props.isShown ? '0': '-40vw'};
-z-index: 3;
+left:${props => props.isShown ? '0': '-100vw'};
+z-index: 1;
 
-transition: all 0.5s ease-in;
+transition: all 0.5s ease-out;
 `

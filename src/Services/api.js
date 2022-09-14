@@ -10,34 +10,32 @@ function signUp(body) {
 function logIn(body) {
     return axios.post(`${URL}/signin`, body)
 }
-// createRegister
-function createRegister(body, getConfig) {
-    return axios.post(`${URL}/createRegister`, body, getConfig)
-}
+
 // Home--------------------------------
-function getBalance(getConfig) {
+function getPortifolio(getConfig) {
     return axios.get(`${URL}/home`, getConfig)
 }
-// Update-------------------------------
-function updateRegister(type, body, id, getConfig) {
-    return axios.put(`${URL}/updateRegister/${type}/${id}`, body, getConfig)
-}
-// Delete --------------------------------
-function deleteRegister(id, getConfig) {
-    return axios.delete(`${URL}/deleteRegister/${id}`, getConfig)
+
+// Cart------------------------------
+function getCart(getConfig) {
+    return axios.get(`${URL}/cart`, getConfig)
 }
 
+// Delete --------------------------------
+function deleteProduct(id, getConfig) {
+    return axios.delete(`${URL}/deleteProduct/${id}`, getConfig)
+}
+
+//Logout
 function logOut(getConfig) {
     return axios.delete(`${URL}/logOut`, getConfig)
-
 }
 
 export {
     signUp,
     logIn,
-    createRegister,
-    getBalance,
-    deleteRegister,
-    updateRegister,
+    getPortifolio,
+    getCart,
+    deleteProduct,
     logOut
 }

@@ -1,33 +1,74 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { getPortifolio } from "../../Services/api";
+import getConfig from "../../Services/getConfig"
+
 import Product from "../Product/Product";
 
-export default function Portifolio(){
+export default function Portifolio() {
 
-    return(
+    const array = [
+        {
+            name: 'Cartola -1976 -Série Clássicos',
+            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
+            price: '150,00',
+            artist: 'Cartola'
+
+        }, {
+            name:'Samba pras moças',
+            img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
+            price:'158,00',
+            artist:'Zeca Pagodinho',
+
+        },{
+            name: 'Cartola -1976 -Série Clássicos',
+            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
+            price: '150,00',
+            artist: 'Cartola'
+
+        }, {
+            name:'Samba pras moças',
+            img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
+            price:'158,00',
+            artist:'Zeca Pagodinho',
+
+        },{
+            name: 'Cartola -1976 -Série Clássicos',
+            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
+            price: '150,00',
+            artist: 'Cartola'
+
+        }, {
+            name:'Samba pras moças',
+            img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
+            price:'158,00',
+            artist:'Zeca Pagodinho',
+
+        },{
+            name: 'Cartola -1976 -Série Clássicos',
+            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
+            price: '150,00',
+            artist: 'Cartola'
+
+        }, {
+            name:'Samba pras moças',
+            img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
+            price:'158,00',
+            artist:'Zeca Pagodinho',
+
+        },
+    ];
+    const token = localStorage.getItem('token');
+
+    useEffect(() =>{
+        // const promise = getPortifolio(getConfig(token))
+    },[])
+    return (
 
         <PortifolioWrapper>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-
-            
+            {array.map((value, index) =>
+                <Product key={index} product = {value}/>
+            ) }
         </PortifolioWrapper>
     )
 }

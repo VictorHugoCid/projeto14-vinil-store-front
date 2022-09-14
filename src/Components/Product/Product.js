@@ -18,7 +18,7 @@ export default function Product({ product }) {
                 <h2>{product.artist}</h2>
                 <PriceWrapper>
                     <span>R${product.price}</span>
-                    <button>
+                    <button >
                         <FaCartPlus />
                     </button>
                 </PriceWrapper>
@@ -94,5 +94,9 @@ bottom: 3px;
 
 display: flex;
 justify-content: space-between;
+
+button{
+    /* color: green; */
+}
 `
 

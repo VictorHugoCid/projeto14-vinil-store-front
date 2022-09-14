@@ -1,10 +1,24 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import getConfig from "../../Services/getConfig";
+import { deleteProduct } from "../../Services/api";
 
 
 
 export default function CartProduct({ product }) {
 
+    const token = localStorage.getItem('token');
 
+    function deleteIten() {
+        const promise = deleteProduct(product.id, getConfig(token))
+    }
+
+    const [value, setValue] = useState()
+    
+    function handleInput(e) {
+        setValue(e.target.value)
+
+    }
 
     return (
 
@@ -18,21 +32,18 @@ export default function CartProduct({ product }) {
             <Funcs>
                 <AddDelete>
                     <input
+                        onChange={handleInput}
                         type='number'
-                    />
-
-                    <p>Delete</p>
+                        min='1' />
+                    <p onClick={deleteIten}>
+                        Delete
+                    </p>
 
                 </AddDelete>
                 <PriceWrapper>
                     R$ {product.price}
                 </PriceWrapper>
-
             </Funcs>
-
-
-
-
         </ProductWrapper>
 
 

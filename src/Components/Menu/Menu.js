@@ -35,5 +35,5 @@ left: 0;
 left:${props => props.isShown ? '0': '-100vw'};
 z-index: 1;
 
-transition: all 0.8s ease-out;
+transition: all 0.5s ease-out;
 `

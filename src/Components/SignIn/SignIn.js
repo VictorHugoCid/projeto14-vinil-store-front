@@ -31,7 +31,7 @@ export default function LogIn() {
         setDisable(false)
     }
 
-    async function sendForm(e) {
+    function sendForm(e) {
         e.preventDefault()
 
         if (disable === true) {

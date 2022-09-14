@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { getPortifolio } from "../../Services/api";
+import getConfig from "../../Services/getConfig"
+
 import Product from "../Product/Product";
 
 export default function Portifolio() {
@@ -54,7 +58,11 @@ export default function Portifolio() {
 
         },
     ];
+    const token = localStorage.getItem('token');
 
+    useEffect(() =>{
+        // const promise = getPortifolio(getConfig(token))
+    },[])
     return (
 
         <PortifolioWrapper>

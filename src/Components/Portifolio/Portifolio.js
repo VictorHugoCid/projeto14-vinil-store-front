@@ -70,6 +70,7 @@ export default function Portifolio() {
     //         qtd: 1,
     //     }
     // ];
+
     const token = localStorage.getItem('token');
 
     useEffect(() =>{
@@ -84,7 +85,7 @@ export default function Portifolio() {
 
         <PortifolioWrapper>
             {array.map((value, index) =>
-                <Product key={index} product = {value}/>
+                <Product key={index} product={value}/>
             ) }
         </PortifolioWrapper>
     )

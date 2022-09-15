@@ -2,19 +2,41 @@ import styled from "styled-components";
 import { useContext } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../../Services/api";
+import getConfig from "../../Services/getConfig";
 
-export default function BoxSignIn() {
+export default function BoxSignIn({username, token}) {
     const navigate = useNavigate()
     const { isShownSignIn, setIsShownSignIn,setIsShownCart } = useContext(GlobalContext);
 
+    
+    if (username !== "! Login.") {
+        return (
 
+            <BoxSignInWrapper
+                onMouseEnter={() => setIsShownSignIn(true)}
+                onMouseLeave={() => setIsShownSignIn(false)}
+                isShownSignIn={isShownSignIn}
+            >
+                <SignOut onClick={signOut}>
+                    Sign-out
+                </SignOut >
+    
+            </BoxSignInWrapper>
+        )
 
-    return (
+    } else {
 
+<<<<<<< HEAD
         <BoxSignInWrapper
             onMouseEnter={() => {
                 setIsShownCart(false)
                 setIsShownSignIn(true)}}
+=======
+        return (
+            <BoxSignInWrapper
+            onMouseEnter={() => setIsShownSignIn(true)}
+>>>>>>> main
             onMouseLeave={() => setIsShownSignIn(false)}
             isShownSignIn={isShownSignIn}
         >
@@ -32,7 +54,20 @@ export default function BoxSignIn() {
 
 
         </BoxSignInWrapper>
-    )
+        )
+    }
+
+    async function signOut () {
+
+        try {
+            logOut(getConfig(token));
+            localStorage.removeItem(username);
+            localStorage.removeItem(token);
+            navigate("/home");
+        } catch (error) {
+            alert("Logout falhou! Favor tentar novamente!");
+        }
+    }
 }
 
 const BoxSignInWrapper = styled.div`
@@ -55,7 +90,6 @@ z-index: 3;
 
 transition: all 0.3s ease-in;
 `
-
 const SignIn = styled.div`
 
 display: flex;
@@ -68,6 +102,17 @@ align-items: center;
 
 `
 const SignUp = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+:hover{
+    cursor: pointer;
+}
+
+`
+const SignOut = styled.div`
 
 display: flex;
 justify-content: center;

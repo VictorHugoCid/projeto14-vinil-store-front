@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
 import { getCart } from "../../Services/api"
+import GlobalContext from "../../Context/globalContext";
 
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
@@ -9,7 +10,9 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const array = [
+    const {cart, setCart} = useContext(GlobalContext);
+
+    /*const array = [
         {
             name: 'Cartola -1976 -Série Clássicos',
             img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
@@ -21,22 +24,37 @@ export default function Cart() {
             img: 'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
             price: '158.00',
             artist: 'Zeca Pagodinho',
-
         },
-    ];
-    const [reRender, setReRender] = useState(false)
-    const token = localStorage.getItem('token');
+    ];*/
 
+    const [reRender, setReRender] = useState(false)
 
     useEffect(() => {
+
         // const promise = getCart(getConfig(token));
     }, [reRender])
 
-    let total = 0
-    for (let k = 0; k < array.length; k++) {
-        total += Number(array[k].price)
+    if (cart.length === 0) {
+        return (
+            <>
+            <Header />
+            <Menu />
+
+            <Wrapper>
+                <CartWrapper>
+                    Nenhum item adicionado ao carrinho!
+                </CartWrapper>
+
+            </Wrapper>
+        </>
+        )
     }
 
+
+    let total = 0
+    for (let k = 0; k < cart.length; k++) {
+        total += Number(cart[k].price)
+    }
 
     return (
         <>
@@ -45,7 +63,7 @@ export default function Cart() {
 
             <Wrapper>
                 <CartWrapper>
-                    {array.map((value, index) =>
+                    {cart.map((value, index) =>
                         <CartProduct
                             key={index}
                             product={value}
@@ -61,8 +79,6 @@ export default function Cart() {
 
             </Wrapper>
         </>
-
-
     )
 }
 
@@ -76,8 +92,6 @@ background-color: purple;
 display: flex;
 justify-content: center;
 `
-
-
 const CartWrapper = styled.div`
 width: 87vw;
 height: fit-content;

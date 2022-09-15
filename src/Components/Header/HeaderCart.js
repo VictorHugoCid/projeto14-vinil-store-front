@@ -2,28 +2,14 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
-import { getCart } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
     const { isShownCart, setIsShownCart } = useContext(GlobalContext);
-    const [cartList, setCartList] = useState([]);
+    const cart = JSON.parse(localStorage.getItem("cart"));
 
     const token = localStorage.getItem("token");
-    let cartContent = [{
-        name: 'Cartola -1976 -Série Clássicos',
-        img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
-        price: '150.00',
-        artist: 'Cartola'
-    },
-    {
-        name:'Samba pras moças',
-        img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
-        price:'158.00',
-        artist:'Zeca Pagodinho',
-
-    }];
 
    /* useEffect (() => {
 
@@ -82,8 +68,7 @@ export default function HeaderCart() {
         )
     } else {    */
 
-        const prices = cartContent.map((item) => Number(item.price));
-        console.log(prices)
+        const prices = cart.map((item) => Number(item.price));
         const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
         return (
 
@@ -93,7 +78,7 @@ export default function HeaderCart() {
                 isShownCart={isShownCart}
             >
                 <BoxCart >
-                    {cartContent.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
+                    {cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
                 </BoxCart>
                 <p>R$ {totalPrice}</p>
                 <Link to="/cart"><button>Concluir Compra</button></Link>
@@ -115,7 +100,6 @@ function CartItem ({name, img, price}) {
         </ItemWrapper>
     )
 }
-
 
 const BoxSignInWrapper = styled.div`
 width: ${props => props.isShownCart ? '200px' : '1px'} ;

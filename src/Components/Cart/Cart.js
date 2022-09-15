@@ -10,22 +10,7 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const {cart, setCart} = useContext(GlobalContext);
-
-    /*const array = [
-        {
-            name: 'Cartola -1976 -Série Clássicos',
-            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
-            price: '150.00',
-            artist: 'Cartola'
-
-        }, {
-            name: 'Samba pras moças',
-            img: 'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
-            price: '158.50',
-            artist: 'Zeca Pagodinho',
-        },
-    ];*/
+    const cart = JSON.parse(localStorage.getItem("cart"));
 
     const [reRender, setReRender] = useState(false)
 

@@ -5,13 +5,13 @@ import { useContext } from "react";
 
 export default function Product({ product }) {
 
-    const {cart, setCart} = useContext(GlobalContext);
+    const {cart} = useContext(GlobalContext);
 
     function addToCart(){
-        localStorage.removeItem("userCart");
-        setCart(cart.push(product));
-        console.log(cart);
+        localStorage.removeItem("cart");
+        cart.push(product);
         const serializedCart = JSON.stringify(cart);
+        localStorage.setItem("cart", serializedCart);
     }
 
     return (

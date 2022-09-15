@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
-// import { signUp } from '../../Services/api'
+import { signUp } from '../../Services/api'
 
 export default function SingUp() {
 
@@ -51,13 +51,13 @@ export default function SingUp() {
             password: form.password,
         }
 
-        // const promise = signUp(body)
-        //     .then(res => {
-        //         navigate('/')
-        //     })
-        //     .catch(err => {
-        //         alert(err.response.data);
-        //     });
+        const promise = signUp(body)
+             .then(res => {
+            navigate('/')
+             })
+             .catch(err => {
+                 alert(err.response.data);
+             });
 
 
     }

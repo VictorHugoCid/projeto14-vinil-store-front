@@ -27,8 +27,8 @@ function deleteProduct(id, getConfig) {
 }
 
 //Logout
-function logOut(getConfig) {
-    return axios.delete(`${URL}/logOut`, getConfig)
+function signOut(getConfig) {
+    return axios.delete(`${URL}/signout`, getConfig)
 }
 
 export {
@@ -37,5 +37,5 @@ export {
     getPortifolio,
     getCart,
     deleteProduct,
-    logOut
+    signOut
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getPortifolio } from "../../Services/api";
 import getConfig from "../../Services/getConfig"
@@ -7,7 +7,8 @@ import Product from "../Product/Product";
 
 export default function Portifolio() {
 
-    const array = [
+    const [array, setArray] = useState([]);
+    /* const array = [
         {
             name: 'Alerta geral',
             img: 'https://s3.amazonaws.com/vinils3/wp-content/uploads/2016/10/Alcione_alerta-geral_01-300x300.jpg',
@@ -52,13 +53,17 @@ export default function Portifolio() {
             artist:'Zeca Pagodinho',
     
         },
-    ];
+    ]; */
     
     const token = localStorage.getItem('token');
 
     useEffect(() =>{
-        // const promise = getPortifolio(getConfig(token))
+        const promise = getPortifolio(getConfig(token))
+            .then((res)=>{
+                setArray(res.data)
+            })
     },[])
+
     return (
 
         <PortifolioWrapper>

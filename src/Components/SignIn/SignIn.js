@@ -43,21 +43,22 @@ export default function LogIn() {
             email: form.email,
             password: form.password,
         }
-        // const promise = logIn(body)
-        //     .then((res) => {
 
-        //         localStorage.setItem('token', res.data.token)
-        //         localStorage.setItem('username', res.data.username)
+        const promise = logIn(body)
+             .then((res) => {
 
-        //         setTimeout(() => {
-        //             navigate('/home');
-        //         }, 1000);
-        //     })
-        //     .catch((err) => {
-        //         alert(err.response.data);
-        //         clearForm();
+                 localStorage.setItem('token', res.data.token)
+                 localStorage.setItem('username', res.data.username)
 
-        //     })
+                 setTimeout(() => {
+                     navigate('/home');
+                 }, 1000);
+             })
+             .catch((err) => {
+                 alert(err.response.data);
+                 clearForm();
+
+        })
 
 
             // para futuro estudo
@@ -76,9 +77,6 @@ export default function LogIn() {
         // } catch (error) {
         //     console.error(error)
         // }
-
-        navigate('/home')
-
 
     }
 

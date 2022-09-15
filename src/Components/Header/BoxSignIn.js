@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
-import { logOut } from "../../Services/api";
+import { signOut } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 export default function BoxSignIn({username, token}) {
@@ -27,16 +27,10 @@ export default function BoxSignIn({username, token}) {
 
     } else {
 
-<<<<<<< HEAD
         <BoxSignInWrapper
             onMouseEnter={() => {
                 setIsShownCart(false)
                 setIsShownSignIn(true)}}
-=======
-        return (
-            <BoxSignInWrapper
-            onMouseEnter={() => setIsShownSignIn(true)}
->>>>>>> main
             onMouseLeave={() => setIsShownSignIn(false)}
             isShownSignIn={isShownSignIn}
         >
@@ -54,13 +48,13 @@ export default function BoxSignIn({username, token}) {
 
 
         </BoxSignInWrapper>
-        )
+        
     }
 
     async function signOut () {
 
         try {
-            logOut(getConfig(token));
+            signOut(getConfig(token));
             localStorage.removeItem(username);
             localStorage.removeItem(token);
             navigate("/home");

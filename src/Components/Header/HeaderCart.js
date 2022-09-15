@@ -7,13 +7,11 @@ import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
-<<<<<<< HEAD
-    const { isShownCart, setIsShownCart,setIsShownSignIn } = useContext(GlobalContext);
-=======
     const { isShownCart, setIsShownCart } = useContext(GlobalContext);
     const [cartList, setCartList] = useState([]);
 
     const token = localStorage.getItem("token");
+    
     let cartContent = [{
         name: 'Cartola -1976 -Série Clássicos',
         img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
@@ -68,7 +66,6 @@ export default function HeaderCart() {
         cartContent = cartList
         
     }
->>>>>>> main
 
 
     if (cartContent !== cartList) {
@@ -115,28 +112,8 @@ function CartItem ({name, img, price}) {
                     <span>R$ {price}</span>
                 </PriceWrapper>
 
-<<<<<<< HEAD
-        <BoxSignInWrapper
-            onMouseEnter={() => {
-                setIsShownSignIn(false)
-                setIsShownCart(true)}}
-            onMouseLeave={() => setIsShownCart(false)}
-            isShownCart={isShownCart}
-        >
-            <BoxCart >
-                {/* vai receber um axios 
-                com a lista do carrinho */}
-                
-            </BoxCart>
-
-
-
-
-        </BoxSignInWrapper>
-=======
             </MiniWrapper>
         </ItemWrapper>
->>>>>>> main
     )
 }
 

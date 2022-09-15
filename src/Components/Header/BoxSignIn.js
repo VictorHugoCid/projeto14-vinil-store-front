@@ -5,14 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function BoxSignIn() {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn } = useContext(GlobalContext);
+    const { isShownSignIn, setIsShownSignIn,setIsShownCart } = useContext(GlobalContext);
 
 
 
     return (
 
         <BoxSignInWrapper
-            onMouseEnter={() => setIsShownSignIn(true)}
+            onMouseEnter={() => {
+                setIsShownCart(false)
+                setIsShownSignIn(true)}}
             onMouseLeave={() => setIsShownSignIn(false)}
             isShownSignIn={isShownSignIn}
         >

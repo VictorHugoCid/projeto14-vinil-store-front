@@ -19,7 +19,7 @@ export default function Cart() {
         }, {
             name: 'Samba pras moças',
             img: 'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
-            price: '158.50',
+            price: '158.00',
             artist: 'Zeca Pagodinho',
 
         },
@@ -55,7 +55,7 @@ export default function Cart() {
                     )}
                     <CheckOut >
                         <h1>Total</h1>
-                        <h1>R$ {total.toFixed(2)}</h1>
+                        <h1>{Number(total).toLocaleString('pt-BR', {style:"currency", currency:"BRL"}) }</h1>
                     </CheckOut>
                 </CartWrapper>
 

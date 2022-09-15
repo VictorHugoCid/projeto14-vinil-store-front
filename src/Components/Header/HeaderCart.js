@@ -5,14 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
-    const { isShownCart, setIsShownCart } = useContext(GlobalContext);
+    const { isShownCart, setIsShownCart,setIsShownSignIn } = useContext(GlobalContext);
 
 
 
     return (
 
         <BoxSignInWrapper
-            onMouseEnter={() => setIsShownCart(true)}
+            onMouseEnter={() => {
+                setIsShownSignIn(false)
+                setIsShownCart(true)}}
             onMouseLeave={() => setIsShownCart(false)}
             isShownCart={isShownCart}
         >

@@ -7,6 +7,7 @@ import SignIn from './SignIn/SignIn';
 import SingUp from './SignUp/SignUp';
 import Home from './Home/Home.js';
 import Cart from './Cart/Cart.js'
+import Success from './SuccessPage/Success.js'
 // import UpdateRegister from './Update/UpdateRegister.js';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
                         <Route path="/signup" element={<SingUp />} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/cart" element={<Cart/>}/>
+                        <Route path="/success" element={<Success />}/>
                         {/* <Route path="/updateRegister/:type/:id" element={<UpdateRegister/>} /> */}
                     </Routes>
                 </BrowserRouter>

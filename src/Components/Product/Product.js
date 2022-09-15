@@ -3,7 +3,7 @@ import { FaCartPlus } from 'react-icons/fa'
 
 export default function Product({ product }) {
 
-    function addToCart(){
+    function addToCart() {
 
         // VAI ENTRAR UM AXIOS.POST PRA INSERT NUMA COLLECTION('CART')
         // OU ARRAY COM LOCALSTORAGE
@@ -35,6 +35,8 @@ max-width: 180px;
 height: 250px;
 max-height: 250px;
 padding:10px;
+box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+border-radius: 8px;
 
 display: flex;
 flex-direction: column;
@@ -53,6 +55,10 @@ overflow-y: scroll;
 }
 
 background-color: #f38ba8;/* aliceblue */
+
+
+-ms-overflow-style: none;
+scrollbar-width: none;
 `
 const ImgWrapper = styled.img`
 width: 160px;
@@ -85,6 +91,7 @@ h2{
 div{
 
 }
+
 `
 const PriceWrapper = styled.div`
 width: 150px;
@@ -98,5 +105,7 @@ justify-content: space-between;
 button{
     /* color: green; */
 }
+
+
 `
 

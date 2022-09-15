@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
-import { logIn } from "../../Services/api";
+import { signIn } from "../../Services/api";
 
 export default function LogIn() {
 
@@ -43,22 +43,23 @@ export default function LogIn() {
             email: form.email,
             password: form.password,
         }
+        
+        const promise = signIn(body)
+            .then((res) => {
 
-        const promise = logIn(body)
-             .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('username', res.data.username)
 
-                 localStorage.setItem('token', res.data.token)
-                 localStorage.setItem('username', res.data.username)
+                setTimeout(() => {
+                    clearForm();
+                    navigate('/home');
+                }, 1000);
+            })
+            .catch((err) => {
+                alert(err.response.data);
+                clearForm();
 
-                 setTimeout(() => {
-                     navigate('/home');
-                 }, 1000);
-             })
-             .catch((err) => {
-                 alert(err.response.data);
-                 clearForm();
-
-        })
+            })
 
 
             // para futuro estudo
@@ -77,7 +78,6 @@ export default function LogIn() {
         // } catch (error) {
         //     console.error(error)
         // }
-
     }
 
     return (

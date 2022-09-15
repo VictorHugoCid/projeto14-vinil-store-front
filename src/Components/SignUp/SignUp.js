@@ -23,6 +23,17 @@ export default function SingUp() {
         })
     }
 
+    function clearForm() {
+        setForm({
+            username: '',
+            email: '',
+            password: '',
+            secondPassword: '',
+
+        })
+        setDisable(false)
+    }
+
     function verifyPassword() {
         if (form.password === form.secondPassword) {
             return true
@@ -52,14 +63,17 @@ export default function SingUp() {
         }
 
         const promise = signUp(body)
-             .then(res => {
-            navigate('/')
-             })
-             .catch(err => {
-                 alert(err.response.data);
-             });
+            .then(res => {
+                setTimeout(() => {
+                    clearForm()
+                    navigate('/signin')
 
-
+                }, 1000)
+            })
+            .catch(err => {
+                alert(err.response.data);
+                clearForm();
+            });
     }
 
     return (

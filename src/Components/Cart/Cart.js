@@ -58,7 +58,7 @@ export default function Cart() {
                     )}
                     <CheckOut >
                         <h1>Total</h1>
-                        <h1>R$ {total.toFixed(2)}</h1>
+                        <h1>{Number(total).toLocaleString('pt-BR', {style:"currency", currency:"BRL"}) }</h1>
                     </CheckOut>
                 </CartWrapper>
 

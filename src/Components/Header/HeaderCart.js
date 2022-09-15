@@ -6,9 +6,9 @@ import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
-    const { isShownCart, setIsShownCart } = useContext(GlobalContext);
-    const cart = JSON.parse(localStorage.getItem("cart"));
 
+    const { isShownCart, setIsShownCart,setIsShownSignIn } = useContext(GlobalContext);
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const token = localStorage.getItem("token");
 
    /* useEffect (() => {
@@ -46,6 +46,8 @@ export default function HeaderCart() {
         cartContent = cartList
         
     }
+
+
     if (cartContent !== cartList) {
         return (
             <BoxSignInWrapper
@@ -87,6 +89,25 @@ function CartItem ({name, img, price}) {
                 <PriceWrapper>
                     <span>R$ {price}</span>
                 </PriceWrapper>
+
+
+        <BoxSignInWrapper
+            onMouseEnter={() => {
+                setIsShownSignIn(false)
+                setIsShownCart(true)}}
+            onMouseLeave={() => setIsShownCart(false)}
+            isShownCart={isShownCart}
+        >
+            <BoxCart >
+                {/* vai receber um axios 
+                com a lista do carrinho */}
+                
+            </BoxCart>
+
+
+
+
+        </BoxSignInWrapper>
 
             </MiniWrapper>
         </ItemWrapper>

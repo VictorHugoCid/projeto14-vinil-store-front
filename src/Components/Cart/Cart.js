@@ -21,22 +21,37 @@ export default function Cart() {
             img: 'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
             price: '158.50',
             artist: 'Zeca Pagodinho',
-
         },
     ];
-    const [reRender, setReRender] = useState(false)
-    const token = localStorage.getItem('token');
 
+    const [reRender, setReRender] = useState(false)
 
     useEffect(() => {
+        
         // const promise = getCart(getConfig(token));
     }, [reRender])
+
+    if (array.length === 0) {
+        return (
+            <>
+            <Header />
+            <Menu />
+
+            <Wrapper>
+                <CartWrapper>
+                    Nenhum item adicionado ao carrinho!
+                </CartWrapper>
+
+            </Wrapper>
+        </>
+        )
+    }
+
 
     let total = 0
     for (let k = 0; k < array.length; k++) {
         total += Number(array[k].price)
     }
-
 
     return (
         <>
@@ -61,8 +76,6 @@ export default function Cart() {
 
             </Wrapper>
         </>
-
-
     )
 }
 

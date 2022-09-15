@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaShoppingCart } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import GlobalContext from "../../Context/globalContext";
 import { useContext } from "react";
 
@@ -9,12 +9,17 @@ import BoxSignIn from "./BoxSignIn";
 import HeaderCart from "./HeaderCart";
 
 
-export default function Header({username, token}) {
+export default function Header() {
 
-    const navigate = useNavigate()
     const { isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
 
-
+    const token = localStorage.getItem("token");
+    let username;
+    if (token) {
+        username = `, ${localStorage.getItem("username")}`;
+    } else {
+        username = "! Login."
+    }
 
     return (
         <HeaderWrapper>

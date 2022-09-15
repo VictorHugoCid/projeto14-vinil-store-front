@@ -96,6 +96,7 @@ export default function HeaderCart() {
                     {cartContent.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
                 </BoxCart>
                 <p>R$ {totalPrice}</p>
+                <Link to="/cart"><button>Concluir Compra</button></Link>
             </BoxSignInWrapper>
         )
 }      

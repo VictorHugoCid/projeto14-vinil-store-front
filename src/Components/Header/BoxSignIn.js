@@ -10,7 +10,7 @@ export default function BoxSignIn({username, token}) {
     const { isShownSignIn, setIsShownSignIn } = useContext(GlobalContext);
 
     
-    if (username !== "! Sign-In.") {
+    if (username !== "! Login.") {
         return (
 
             <BoxSignInWrapper

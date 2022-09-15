@@ -9,7 +9,7 @@ import BoxSignIn from "./BoxSignIn";
 import HeaderCart from "./HeaderCart";
 
 
-export default function Header() {
+export default function Header({username, token}) {
 
     const navigate = useNavigate()
     const { isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
         <HeaderWrapper>
-            <BoxSignIn />
+            <BoxSignIn username={username} token={token}/>
             <HeaderCart />
             <MenuIcon
                 onMouseEnter={() => setIsShown(true)}
@@ -34,6 +34,7 @@ export default function Header() {
             </Title>
             <Rigth>
 
+
                 <Link
                     to='/signin'
                     onMouseEnter={() => {
@@ -41,7 +42,7 @@ export default function Header() {
                         setIsShownSignIn(true)
                     }}
                 >
-                    Hello, sign-in.
+                    {`Hello${username}`}
                 </Link>
 
                 <FaShoppingCart
@@ -73,7 +74,6 @@ z-index: 1;
 
 background-color: #fab387;
 `
-
 const Rigth = styled.div`
 display: flex;
 justify-content: space-between;
@@ -91,7 +91,6 @@ a{
 }
 
 `
-
 const MenuIcon = styled.div`
 
 :hover{

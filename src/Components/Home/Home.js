@@ -8,10 +8,17 @@ import Menu from "../Menu/Menu";
 export default function Home() {
 
     // const { isShown } = useContext(GlobalContext)
+    const token = localStorage.getItem("token");
+    let username = "";
+    if (token) {
+        username = `, ${localStorage.getItem("username")}!`;
+    } else {
+        username = "! Sign-In.";
+    }
 
     return (
         <>
-            <Header />
+            <Header username={username} token={token}/>
             <Menu />
             <HomeWrapper>
                 <Portifolio />

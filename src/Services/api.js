@@ -29,7 +29,7 @@ function deleteProduct(id, getConfig) {
 
 //Logout
 function signOut(getConfig) {
-    return axios.delete(`${URL}/logOut`, getConfig)
+    return axios.delete(`${URL}/signout`, getConfig)
 }
 
 export {

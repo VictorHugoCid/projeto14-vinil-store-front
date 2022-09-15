@@ -74,8 +74,6 @@ export default function SingUp() {
                 alert(err.response.data);
                 clearForm();
             });
-
-
     }
 
     return (

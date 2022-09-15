@@ -2,34 +2,16 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
-import { getCart } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
-<<<<<<< HEAD
+
     const { isShownCart, setIsShownCart,setIsShownSignIn } = useContext(GlobalContext);
-=======
-    const { isShownCart, setIsShownCart } = useContext(GlobalContext);
-    const [cartList, setCartList] = useState([]);
-
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const token = localStorage.getItem("token");
-    let cartContent = [{
-        name: 'Cartola -1976 -Série Clássicos',
-        img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
-        price: '150.00',
-        artist: 'Cartola'
-    },
-    {
-        name:'Samba pras moças',
-        img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
-        price:'158.00',
-        artist:'Zeca Pagodinho',
-
-    }];
 
    /* useEffect (() => {
-
         async function getItens () {
             try {
                 cartContent = await getCart(getConfig(token));
@@ -43,13 +25,10 @@ export default function HeaderCart() {
             getItens();
         }        
     }, []);    
-
     //UI
     if (!token) {
         cartContent = "Usuário não logado!";
-
         return (
-
             <BoxSignInWrapper
                 onMouseEnter={() => setIsShownCart(true)}
                 onMouseLeave={() => setIsShownCart(false)}
@@ -61,19 +40,16 @@ export default function HeaderCart() {
             </BoxSignInWrapper>
         )
     }
-
     if (cartList.length === 0) {
         cartContent = "Carrinho vazio!"
     } else {
         cartContent = cartList
         
     }
->>>>>>> main
 
 
     if (cartContent !== cartList) {
         return (
-
             <BoxSignInWrapper
                 onMouseEnter={() => setIsShownCart(true)}
                 onMouseLeave={() => setIsShownCart(false)}
@@ -86,8 +62,7 @@ export default function HeaderCart() {
         )
     } else {    */
 
-        const prices = cartContent.map((item) => Number(item.price));
-        console.log(prices)
+        const prices = cart.map((item) => Number(item.price));
         const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
         return (
 
@@ -97,7 +72,7 @@ export default function HeaderCart() {
                 isShownCart={isShownCart}
             >
                 <BoxCart >
-                    {cartContent.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
+                    {cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
                 </BoxCart>
                 <p>R$ {totalPrice}</p>
                 <Link to="/cart"><button>Concluir Compra</button></Link>
@@ -115,7 +90,7 @@ function CartItem ({name, img, price}) {
                     <span>R$ {price}</span>
                 </PriceWrapper>
 
-<<<<<<< HEAD
+
         <BoxSignInWrapper
             onMouseEnter={() => {
                 setIsShownSignIn(false)
@@ -133,50 +108,40 @@ function CartItem ({name, img, price}) {
 
 
         </BoxSignInWrapper>
-=======
+
             </MiniWrapper>
         </ItemWrapper>
->>>>>>> main
     )
 }
-
 
 const BoxSignInWrapper = styled.div`
 width: ${props => props.isShownCart ? '200px' : '1px'} ;
 height: ${props => props.isShownCart ? '200px' : '1px'} ;
 top: 60px;
-
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
 padding: 5px;
-
 background-color: #cdd6f4;
 opacity: 0.95;
-
 position: fixed;
 top: 60px;
 right: 0px;
 opacity: ${props => props.isShownCart ? 0.98 : 0} ;
 z-index: 1;
-
 transition: all 0.5s ease-in;
-
     p {
         font-weight: 700;
     }
 `
 const BoxCart = styled.div`
-
 width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
-
 :hover{
     cursor: pointer;
 }
-
 `
 const ItemWrapper = styled.div`
     display: flex;
@@ -186,38 +151,30 @@ const ImgWrapper = styled.img`
 width: 80px;
 height: 80px;
 border: none;
-
 background-color: aliceblue;
 `
 const MiniWrapper = styled.div`
 width: 80px;
 height: 80px;
 padding: 5px;
-
 position: relative;
-
 background-color: aliceblue;
-
 h1{
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 5px;
 }
-
 h2{
     font-size: 10px;
     color:gray;
 }
 div{
-
 }
 `
 const PriceWrapper = styled.div`
 width: 150px;
-
 position: absolute;
 bottom: 3px;
-
 display: flex;
 justify-content: space-between;
 `

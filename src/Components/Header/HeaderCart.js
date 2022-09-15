@@ -11,9 +11,21 @@ export default function HeaderCart() {
     const [cartList, setCartList] = useState([]);
 
     const token = localStorage.getItem("token");
-    let cartContent;
+    let cartContent = [{
+        name: 'Cartola -1976 -Série Clássicos',
+        img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
+        price: '150.00',
+        artist: 'Cartola'
+    },
+    {
+        name:'Samba pras moças',
+        img:'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
+        price:'158.00',
+        artist:'Zeca Pagodinho',
 
-    useEffect (() => {
+    }];
+
+   /* useEffect (() => {
 
         async function getItens () {
             try {
@@ -27,7 +39,7 @@ export default function HeaderCart() {
         if (token) {
             getItens();
         }        
-    }, [/*adicionar variável que muda quando algum item for removido ou adicionado ao carrinho*/]);
+    }, []);    
 
     //UI
     if (!token) {
@@ -51,6 +63,7 @@ export default function HeaderCart() {
         cartContent = "Carrinho vazio!"
     } else {
         cartContent = cartList
+        
     }
 
 
@@ -67,7 +80,11 @@ export default function HeaderCart() {
                 </BoxCart>
             </BoxSignInWrapper>
         )
-    } else {
+    } else {    */
+
+        const prices = cartContent.map((item) => Number(item.price));
+        console.log(prices)
+        const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
         return (
 
             <BoxSignInWrapper
@@ -76,13 +93,28 @@ export default function HeaderCart() {
                 isShownCart={isShownCart}
             >
                 <BoxCart >
-                    {/*{cartContent.map((item) => <cartItem title={title} cover={cover} price={price}/>)};*/}
+                    {cartContent.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
                 </BoxCart>
-                {/*VALOR TOTAL DOS ITENS*/};    
+                <p>R$ {totalPrice}</p>
             </BoxSignInWrapper>
         )
-    }
+}      
+
+function CartItem ({name, img, price}) {
+    return (
+        <ItemWrapper>
+            <ImgWrapper src={img} />
+            <MiniWrapper>
+                <h1>{name}</h1>
+                <PriceWrapper>
+                    <span>R$ {price}</span>
+                </PriceWrapper>
+
+            </MiniWrapper>
+        </ItemWrapper>
+    )
 }
+
 
 const BoxSignInWrapper = styled.div`
 width: ${props => props.isShownCart ? '200px' : '1px'} ;
@@ -92,6 +124,7 @@ top: 60px;
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
+padding: 5px;
 
 background-color: #cdd6f4;
 opacity: 0.95;
@@ -104,16 +137,62 @@ z-index: 1;
 
 transition: all 0.5s ease-in;
 
+    p {
+        font-weight: 700;
+    }
 `
-
 const BoxCart = styled.div`
 
+width: 100%;
 display: flex;
+flex-direction: column;
 justify-content: center;
-align-items: center;
 
 :hover{
     cursor: pointer;
 }
 
+`
+const ItemWrapper = styled.div`
+    display: flex;
+    margin-bottom: 5px;
+`
+const ImgWrapper = styled.img`
+width: 80px;
+height: 80px;
+border: none;
+
+background-color: aliceblue;
+`
+const MiniWrapper = styled.div`
+width: 80px;
+height: 80px;
+padding: 5px;
+
+position: relative;
+
+background-color: aliceblue;
+
+h1{
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+h2{
+    font-size: 10px;
+    color:gray;
+}
+div{
+
+}
+`
+const PriceWrapper = styled.div`
+width: 150px;
+
+position: absolute;
+bottom: 3px;
+
+display: flex;
+justify-content: space-between;
 `

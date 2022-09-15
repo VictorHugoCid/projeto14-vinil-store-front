@@ -76,8 +76,6 @@ background-color: purple;
 display: flex;
 justify-content: center;
 `
-
-
 const CartWrapper = styled.div`
 width: 87vw;
 height: fit-content;

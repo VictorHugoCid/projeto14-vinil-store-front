@@ -13,11 +13,10 @@ export default function CartProduct({ product }) {
         const promise = deleteProduct(product.id, getConfig(token))
     }
 
-    const [value, setValue] = useState()
+    const [qtd, setQtd] = useState(1);
     
     function handleInput(e) {
-        setValue(e.target.value)
-
+        setQtd(e.target.value);
     }
 
     return (
@@ -34,14 +33,15 @@ export default function CartProduct({ product }) {
                     <input
                         onChange={handleInput}
                         type='number'
-                        min='1' />
+                        value={qtd}
+                        min="1" />
                     <p onClick={deleteIten}>
                         Delete
                     </p>
 
                 </AddDelete>
                 <PriceWrapper>
-                    R$ {product.price}
+                    R$ {product.price*qtd}
                 </PriceWrapper>
             </Funcs>
         </ProductWrapper>

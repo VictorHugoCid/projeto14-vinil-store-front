@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
 import { getCart } from "../../Services/api"
+import GlobalContext from "../../Context/globalContext";
 
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
@@ -9,7 +10,9 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const array = [
+    const {cart, setCart} = useContext(GlobalContext);
+
+    /*const array = [
         {
             name: 'Cartola -1976 -Série Clássicos',
             img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
@@ -22,16 +25,16 @@ export default function Cart() {
             price: '158.50',
             artist: 'Zeca Pagodinho',
         },
-    ];
+    ];*/
 
     const [reRender, setReRender] = useState(false)
 
     useEffect(() => {
-        
+
         // const promise = getCart(getConfig(token));
     }, [reRender])
 
-    if (array.length === 0) {
+    if (cart.length === 0) {
         return (
             <>
             <Header />
@@ -49,8 +52,8 @@ export default function Cart() {
 
 
     let total = 0
-    for (let k = 0; k < array.length; k++) {
-        total += Number(array[k].price)
+    for (let k = 0; k < cart.length; k++) {
+        total += Number(cart[k].price)
     }
 
     return (
@@ -60,7 +63,7 @@ export default function Cart() {
 
             <Wrapper>
                 <CartWrapper>
-                    {array.map((value, index) =>
+                    {cart.map((value, index) =>
                         <CartProduct
                             key={index}
                             product={value}

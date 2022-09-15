@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { FaCartPlus } from 'react-icons/fa'
+import GlobalContext from "../../Context/globalContext";
+import { useContext } from "react";
 
 export default function Product({ product }) {
 
+    const {cart, setCart} = useContext(GlobalContext);
+
     function addToCart(){
-
-        // VAI ENTRAR UM AXIOS.POST PRA INSERT NUMA COLLECTION('CART')
-        // OU ARRAY COM LOCALSTORAGE
-
+        localStorage.removeItem("userCart");
+        setCart(cart.push(product));
+        console.log(cart);
+        const serializedCart = JSON.stringify(cart);
     }
 
     return (
@@ -18,7 +22,7 @@ export default function Product({ product }) {
                 <h2>{product.artist}</h2>
                 <PriceWrapper>
                     <span>R${product.price}</span>
-                    <button >
+                    <button onClick={addToCart}>
                         <FaCartPlus />
                     </button>
                 </PriceWrapper>
@@ -62,7 +66,6 @@ border: none;
 background-color: aliceblue;
 
 `
-
 const MiniWrapper = styled.div`
 width: 160px;
 height: 80px;

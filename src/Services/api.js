@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const URL = "http://localhost:5000";
+const URL = process.env.REACT_APP_API_BASE_URL;
+// const URL = 'http://localhost:5000';
 
 // Sign-Up--------------------------------
 function signUp(body) {
     return axios.post(`${URL}/signup`, body)
 }
 // LogIn
-function logIn(body) {
+function signIn(body) {
     return axios.post(`${URL}/signin`, body)
 }
 
@@ -27,15 +28,15 @@ function deleteProduct(id, getConfig) {
 }
 
 //Logout
-function logOut(getConfig) {
+function signOut(getConfig) {
     return axios.delete(`${URL}/logOut`, getConfig)
 }
 
 export {
     signUp,
-    logIn,
+    signIn,
     getPortifolio,
     getCart,
     deleteProduct,
-    logOut
+    signOut
 }

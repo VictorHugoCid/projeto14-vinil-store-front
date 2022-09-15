@@ -7,7 +7,7 @@ import getConfig from "../../Services/getConfig";
 
 export default function BoxSignIn({username, token}) {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn } = useContext(GlobalContext);
+    const { isShownSignIn, setIsShownSignIn,setIsShownCart } = useContext(GlobalContext);
 
     
     if (username !== "! Login.") {
@@ -27,9 +27,16 @@ export default function BoxSignIn({username, token}) {
 
     } else {
 
+<<<<<<< HEAD
+        <BoxSignInWrapper
+            onMouseEnter={() => {
+                setIsShownCart(false)
+                setIsShownSignIn(true)}}
+=======
         return (
             <BoxSignInWrapper
             onMouseEnter={() => setIsShownSignIn(true)}
+>>>>>>> main
             onMouseLeave={() => setIsShownSignIn(false)}
             isShownSignIn={isShownSignIn}
         >

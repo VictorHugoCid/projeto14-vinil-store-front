@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
-// import { signUp } from '../../Services/api'
+import { signUp } from '../../Services/api'
 
 export default function SingUp() {
 
@@ -21,6 +21,17 @@ export default function SingUp() {
             ...form,
             [e.target.name]: e.target.value
         })
+    }
+
+    function clearForm() {
+        setForm({
+            username: '',
+            email: '',
+            password: '',
+            secondPassword: '',
+
+        })
+        setDisable(false)
     }
 
     function verifyPassword() {
@@ -51,13 +62,18 @@ export default function SingUp() {
             password: form.password,
         }
 
-        // const promise = signUp(body)
-        //     .then(res => {
-        //         navigate('/')
-        //     })
-        //     .catch(err => {
-        //         alert(err.response.data);
-        //     });
+        const promise = signUp(body)
+            .then(res => {
+                setTimeout(() => {
+                    clearForm()
+                    navigate('/signin')
+
+                }, 1000)
+            })
+            .catch(err => {
+                alert(err.response.data);
+                clearForm();
+            });
 
 
     }

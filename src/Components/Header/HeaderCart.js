@@ -2,15 +2,46 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
+import { getCart } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
+    const { token, isShownCart, setIsShownCart, setIsShownSignIn } = useContext(GlobalContext);
+    const [cart, setCart] = useState([]);
 
+    useEffect (() => {
+        async function getItens () {
+            console.log("ENTREIII");
+            try {
+                const cart1 = await getCart(getConfig(token));
+                console.log(cart1.data);
+                setCart(cart1.data);  
+            } catch (error) {
+                alert(error.response.data);
+            }  
+        }
+        
+        if (token) {
+            getItens();
+        }        
+    }, []);    
 
-    const { isShownCart, setIsShownCart, setIsShownSignIn } = useContext(GlobalContext);
-    // const cart = JSON.parse(localStorage.getItem("cart"));
-    const cart = [
+    if (!token) {
+        return (
+            <CartWrapper
+                onMouseEnter={() => setIsShownCart(true)}
+                onMouseLeave={() => setIsShownCart(false)}
+                isShownCart={isShownCart}
+            >
+                <BoxCart >
+                    Usuário não logado!   
+                </BoxCart>
+            </CartWrapper>
+        )
+    }
+    
+    /* const cart = [
         {
             name: 'Alerta geral',
             img: 'https://s3.amazonaws.com/vinils3/wp-content/uploads/2016/10/Alcione_alerta-geral_01-300x300.jpg',
@@ -41,80 +72,39 @@ export default function HeaderCart() {
             type: 'samba',
             qtd: 1,
         },
-    ]
-    const token = localStorage.getItem("token");
-
-
-    /* useEffect (() => {
-         async function getItens () {
-             try {
-                 cartContent = await getCart(getConfig(token));
-                 setCartList(cartContent);
-             } catch (error) {
-                 console.log("Impossível mostrar itens")
-             }  
-         }
-         
-         if (token) {
-             getItens();
-         }        
-     }, []);    
-     //UI
-     if (!token) {
-         cartContent = "Usuário não logado!";
-         return (
-             <BoxSignInWrapper
-                 onMouseEnter={() => setIsShownCart(true)}
-                 onMouseLeave={() => setIsShownCart(false)}
-                 isShownCart={isShownCart}
-             >
-                 <BoxCart >
-                     {cartContent}   
-                 </BoxCart>
-             </BoxSignInWrapper>
-         )
-     }
-     if (cartList.length === 0) {
-         cartContent = "Carrinho vazio!"
-     } else {
-         cartContent = cartList
-         
-     }
+    ] */
  
- 
-     if (cartContent !== cartList) {
-         return (
-             <BoxSignInWrapper
-                 onMouseEnter={() => setIsShownCart(true)}
-                 onMouseLeave={() => setIsShownCart(false)}
-                 isShownCart={isShownCart}
-             >
-                 <BoxCart >
-                     {cartContent}   
-                 </BoxCart>
-             </BoxSignInWrapper>
-         )
-     } else {    */
-
     const prices = cart.map((item) => Number(item.price));
     const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
 
-    return (
-
-        <CartWrapper
-            onMouseEnter={() => setIsShownCart(true)}
-            onMouseLeave={() => setIsShownCart(false)}
-            isShownCart={isShownCart}
-        >
-            <BoxCart >
-                
-
-                { cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index} />) }
-            </BoxCart>
-            <p>R$ {totalPrice}</p>
-            <Link to="/cart"><button>Concluir Compra</button></Link>
-        </CartWrapper>
-    )
+     //UI
+     if (cart.length === 0) {
+        return (
+            <CartWrapper
+                onMouseEnter={() => setIsShownCart(true)}
+                onMouseLeave={() => setIsShownCart(false)}
+                isShownCart={isShownCart}
+            >
+                <BoxCart >
+                    Carrinho vazio!  
+                </BoxCart>
+            </CartWrapper>
+        )
+     } else {
+        return (
+            <CartWrapper
+                onMouseEnter={() => setIsShownCart(true)}
+                onMouseLeave={() => setIsShownCart(false)}
+                isShownCart={isShownCart}
+            >
+                <BoxCart >
+                    { cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index} />) }
+                </BoxCart>
+                <p>R$ {totalPrice}</p>
+                <Link to="/cart"><button>Concluir Compra</button></Link>
+            </CartWrapper>
+        )
+     }
 }
 
 

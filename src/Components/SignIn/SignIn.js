@@ -9,7 +9,7 @@ export default function LogIn() {
 
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false);
-    let { token } = useContext(GlobalContext);
+    const { token, setToken } = useContext(GlobalContext);
 
     const [form, setForm] = useState({
         email: '',
@@ -46,17 +46,19 @@ export default function LogIn() {
             password: form.password,
         }
         
+        
         signIn(body)
             .then((res) => {
 
-                token = res.data.token;
-
+                setToken(res.data.token);
+    
                 setTimeout(() => {
                     clearForm();
                     navigate('/home');
                 }, 1000);
             })
             .catch((err) => {
+                console.log(err)
                 alert(err.response.data);
                 clearForm();
 

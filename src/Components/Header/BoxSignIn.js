@@ -7,8 +7,7 @@ import getConfig from "../../Services/getConfig";
 
 export default function BoxSignIn({ username }) {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
-    let token = useContext(GlobalContext);
+    const { token, setToken, isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
 
     if (username !== "! Login.") {
         return (
@@ -58,7 +57,7 @@ export default function BoxSignIn({ username }) {
 
         try {
             await signOut(getConfig(token));
-            token = "";
+            setToken("");
             navigate("/signin");
         } catch (error) {
             alert(error.response.data);

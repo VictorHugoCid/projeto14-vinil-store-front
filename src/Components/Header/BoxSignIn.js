@@ -27,16 +27,9 @@ export default function BoxSignIn({username, token}) {
 
     } else {
 
-<<<<<<< HEAD
-        <BoxSignInWrapper
-            onMouseEnter={() => {
-                setIsShownCart(false)
-                setIsShownSignIn(true)}}
-=======
         return (
             <BoxSignInWrapper
             onMouseEnter={() => setIsShownSignIn(true)}
->>>>>>> main
             onMouseLeave={() => setIsShownSignIn(false)}
             isShownSignIn={isShownSignIn}
         >

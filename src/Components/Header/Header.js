@@ -67,50 +67,36 @@ const HeaderWrapper = styled.div`
 width: 100%;
 height: 60px;
 padding: 15px;
-
-
 display: flex;
 justify-content: space-between;
 align-items: center;
-
 position: fixed;
 z-index: 1;
-
-
 background-color: #fab387;
 `
 const Rigth = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-
 font-size: 12px;
-
 a{
     margin-right: 10px;
 }
-
-
 :hover{
     cursor: pointer;
 }
-
 `
 const MenuIcon = styled.div`
-
 :hover{
     color:red;
     cursor: pointer;
 }
-
 `
 const Title = styled.div`
 width: 200px;
-
 display: flex;
 justify-content: center;
 align-items: center;
-
 position:fixed;
 left: calc(50% - 100px)
 `

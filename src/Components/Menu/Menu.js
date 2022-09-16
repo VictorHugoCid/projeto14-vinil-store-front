@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 export default function Menu() {
 
     const navigate = useNavigate()
-    const {isShown, setIsShown} = useContext(GlobalContext);
+    const { isShown, setIsShown, style, setStyle, reRender, setReRender } = useContext(GlobalContext);
+
 
 
     return (
@@ -15,6 +16,19 @@ export default function Menu() {
             onMouseLeave={() => setIsShown(false)}
             isShown={isShown}
         >
+            <p onClick={() => {
+                setStyle('samba')
+                setReRender(!reRender)
+            }}>Samba</p>
+            <p onClick={() => {
+                setStyle('Rock')
+                setReRender(!reRender)
+            }}>Rock</p>
+            <p onClick={() => {
+                setStyle('Forró')
+                setReRender(!reRender)
+            }}>Forró</p>
+
 
         </MenuWrapper>
 
@@ -32,8 +46,14 @@ opacity: 0.98;
 
 position: fixed;
 left: 0;
-left:${props => props.isShown ? '0': '-100vw'};
+left:${props => props.isShown ? '0' : '-100vw'};
 z-index: 1;
 
 transition: all 0.5s ease-out;
+
+
+p{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
 `

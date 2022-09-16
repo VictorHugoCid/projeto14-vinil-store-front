@@ -13,8 +13,9 @@ function signIn(body) {
 }
 
 // Home--------------------------------
-function getPortifolio(getConfig) {
-    return axios.get(`${URL}/home`, getConfig)
+function getPortifolio(style, getConfig) {
+    console.log(style)
+    return axios.get(`${URL}/home?style=${style}`, getConfig)
 }
 
 // Cart------------------------------
@@ -29,7 +30,7 @@ function deleteProduct(id, getConfig) {
 
 //Logout
 function signOut(getConfig) {
-    return axios.delete(`${URL}/logOut`, getConfig)
+    return axios.delete(`${URL}/signout`, getConfig)
 }
 
 export {

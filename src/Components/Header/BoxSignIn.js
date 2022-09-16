@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { useContext } from "react";
 import GlobalContext from "../../Context/globalContext";
 import { Link, useNavigate } from "react-router-dom";
-import { logOut } from "../../Services/api";
+import { signOut } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
-export default function BoxSignIn({username, token}) {
+export default function BoxSignIn({ username, token }) {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn,setIsShownCart } = useContext(GlobalContext);
+    const { isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
 
-    
+
     if (username !== "! Login.") {
         return (
 
@@ -18,47 +18,51 @@ export default function BoxSignIn({username, token}) {
                 onMouseLeave={() => setIsShownSignIn(false)}
                 isShownSignIn={isShownSignIn}
             >
-                <SignOut onClick={signOut}>
+                <SignOut onClick={logOut}>
                     Sign-out
                 </SignOut >
-    
+
             </BoxSignInWrapper>
         )
 
     } else {
-
         return (
             <BoxSignInWrapper
-            onMouseEnter={() => setIsShownSignIn(true)}
-            onMouseLeave={() => setIsShownSignIn(false)}
-            isShownSignIn={isShownSignIn}
-        >
-            <SignIn >
-                <Link to='/signin'>
-                    Sign-in
-                </Link>
-            </SignIn>
+                onMouseEnter={() => {
+                    setIsShownCart(false)
+                    setIsShownSignIn(true)
+                }}
+                onMouseLeave={() => setIsShownSignIn(false)}
+                isShownSignIn={isShownSignIn}
+            >
+                <SignIn >
+                    <Link to='/signin'>
+                        Sign-in
+                    </Link>
+                </SignIn>
 
-            <SignUp >
-                <Link to='/signup'>
-                    Sign-up
-                </Link>
-            </SignUp>
+                <SignUp >
+                    <Link to='/signup'>
+                        Sign-up
+                    </Link>
+                </SignUp>
 
 
-        </BoxSignInWrapper>
+            </BoxSignInWrapper>
         )
+
+
     }
 
-    async function signOut () {
+    async function logOut() {
 
         try {
-            logOut(getConfig(token));
-            localStorage.removeItem(username);
-            localStorage.removeItem(token);
-            navigate("/home");
+            await signOut(getConfig(token));
+            localStorage.removeItem('username');
+            localStorage.removeItem('token');
+            navigate("/signin");
         } catch (error) {
-            alert("Logout falhou! Favor tentar novamente!");
+            alert(error.response.data);
         }
     }
 }
@@ -67,52 +71,39 @@ const BoxSignInWrapper = styled.div`
 width: ${props => props.isShownSignIn ? '100px' : '0px'};
 height: ${props => props.isShownSignIn ? '100px' : '0px'};
 top: 60px;
-
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
-
 background-color: #cdd6f4;
 opacity: 0.95;
-
 position: fixed;
 top: ${props => props.isShownSignIn ? '60px' : '30px'};
 right: ${props => props.isShownSignIn ? '50px' : '80px'};
 opacity: ${props => props.isShownSignIn ? 0.98 : 0};
 z-index: 3;
-
 transition: all 0.3s ease-in;
 `
 const SignIn = styled.div`
-
 display: flex;
 justify-content: center;
 align-items: center;
-
 :hover{
     cursor: pointer;
 }
-
 `
 const SignUp = styled.div`
-
 display: flex;
 justify-content: center;
 align-items: center;
-
 :hover{
     cursor: pointer;
 }
-
 `
 const SignOut = styled.div`
-
 display: flex;
 justify-content: center;
 align-items: center;
-
 :hover{
     cursor: pointer;
 }
-
 `

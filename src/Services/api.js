@@ -33,11 +33,17 @@ function signOut(getConfig) {
     return axios.delete(`${URL}/signout`, getConfig)
 }
 
+// UserStatus
+function verifySession (getConfig) {
+    return axios.get(`${URL}/verifysession`, getConfig)
+}
+
 export {
     signUp,
     signIn,
     getPortifolio,
     getCart,
     deleteProduct,
-    signOut
+    signOut,
+    verifySession
 }

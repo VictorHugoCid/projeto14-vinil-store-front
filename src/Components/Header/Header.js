@@ -7,23 +7,29 @@ import { useContext } from "react";
 
 import BoxSignIn from "./BoxSignIn";
 import HeaderCart from "./HeaderCart";
+import { verifySession } from "../../Services/api";
+import getConfig from "../../Services/getConfig";
 
 
-export default function Header() {
+export default async function Header() {
 
-    const { isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
-
-    const token = localStorage.getItem("token");
-    let username;
+    const { token, isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
+    let username;   
+    
     if (token) {
-        username = `, ${localStorage.getItem("username")}`;
+        try {
+            const session = await verifySession(getConfig(token));
+            username = session.username;
+        } catch (error) {
+            alert(error.response.data);
+        }
     } else {
         username = "! Login."
     }
 
     return (
         <HeaderWrapper>
-            <BoxSignIn username={username} token={token}/>
+            <BoxSignIn username={username} />
             <HeaderCart />
             <MenuIcon
                 onMouseEnter={() => setIsShown(true)}

@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import GlobalContext from "../../Context/globalContext";
 import { getPortifolio } from "../../Services/api";
 import getConfig from "../../Services/getConfig"
 
@@ -7,15 +9,20 @@ import Product from "../Product/Product";
 
 export default function Portifolio() {
 
+
+    const navigate = useNavigate()
     const [array, setArray] = useState([]);
     const token = localStorage.getItem('token');
-
+    const {style, reRender} = useContext(GlobalContext);
+    
     useEffect(() =>{
-        const promise = getPortifolio(getConfig(token))
+        const promise = getPortifolio(style,getConfig(token))
             .then((res)=>{
+                console.log("1",style)
                 setArray(res.data)
+                navigate('/home')
             })
-    },[])
+    },[reRender])
 
 
 

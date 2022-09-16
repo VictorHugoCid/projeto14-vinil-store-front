@@ -10,24 +10,28 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const {cart, setCart} = useContext(GlobalContext);
-
-    /*const array = [
-        {
-            name: 'Cartola -1976 -Série Clássicos',
-            img: 'https://m.media-amazon.com/images/I/71U7Zyq15bL._AC_SL1500_.jpg',
-            price: '150.00',
-            artist: 'Cartola'
-
-        }, {
-            name: 'Samba pras moças',
-            img: 'https://m.media-amazon.com/images/I/71L6ZGLcYmS._AC_SL1000_.jpg',
-            price: '158.00',
-            artist: 'Zeca Pagodinho',
-        },
-    ];*/
+    // const cart = JSON.parse(localStorage.getItem("cart"));
 
     const [reRender, setReRender] = useState(false)
+
+    const cart = [
+        {
+            name: 'Alerta geral',
+            img: 'https://s3.amazonaws.com/vinils3/wp-content/uploads/2016/10/Alcione_alerta-geral_01-300x300.jpg',
+            price: 150,
+            artist: 'Alcione',
+            type: 'samba',
+            qtd: 1,
+    
+        }, {
+            name: ' Elis & Tom',
+            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
+            price: 147.50,
+            artist: 'Elis Regina e Tom Jobim',
+            type: 'samba',
+            qtd: 1,
+        }
+    ]
 
     useEffect(() => {
 

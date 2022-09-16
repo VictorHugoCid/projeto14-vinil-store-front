@@ -26,7 +26,7 @@ export default function CartProduct({ product }) {
             <TextWrapper>
                 <h1>{product.name}</h1>
                 <h2>{product.artist}</h2>
-                <h3>{product.price}</h3>
+                <h3>{product.price.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}</h3>
             </TextWrapper>
             <Funcs>
                 <AddDelete>
@@ -41,7 +41,7 @@ export default function CartProduct({ product }) {
 
                 </AddDelete>
                 <PriceWrapper>
-                    R$ {product.price*qtd}
+                    {product.price.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}
                 </PriceWrapper>
             </Funcs>
         </ProductWrapper>

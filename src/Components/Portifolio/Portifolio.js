@@ -8,16 +8,17 @@ import Product from "../Product/Product";
 export default function Portifolio() {
 
     const [array, setArray] = useState([]);
-
     const token = localStorage.getItem('token');
 
     useEffect(() =>{
         const promise = getPortifolio(getConfig(token))
             .then((res)=>{
                 setArray(res.data)
-
             })
     },[])
+
+
+
 
     return (
 

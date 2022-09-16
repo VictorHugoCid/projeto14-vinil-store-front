@@ -43,6 +43,7 @@ export default function LogIn() {
             email: form.email,
             password: form.password,
         }
+        
         const promise = signIn(body)
             .then((res) => {
 
@@ -77,10 +78,6 @@ export default function LogIn() {
         // } catch (error) {
         //     console.error(error)
         // }
-
-        // navigate('/home')
-
-
     }
 
     return (

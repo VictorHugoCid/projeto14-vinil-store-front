@@ -15,7 +15,7 @@ export default function App() {
     const [isShown, setIsShown ]= useState(false)
     const [isShownSignIn, setIsShownSignIn ]= useState(false)
     const [isShownCart, setIsShownCart ]= useState(false)
-    const [cart, setCart] = useState([]);
+    const cart = [];
 
 
 
@@ -24,7 +24,7 @@ export default function App() {
     return (
         <>
             <GlobalStyle />
-            <globalContext.Provider value = {{ cart, setCart, setValue, reRender, setReRender, isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart}}>
+            <globalContext.Provider value = {{ cart, setValue, reRender, setReRender, isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart}}>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/signin" element={<SignIn />} />

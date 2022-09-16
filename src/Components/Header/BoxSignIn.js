@@ -5,11 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
-export default function BoxSignIn({username, token}) {
+export default function BoxSignIn({ username, token }) {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn,setIsShownCart } = useContext(GlobalContext);
+    const { isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
 
-    
+
     if (username !== "! Login.") {
         return (
 
@@ -21,51 +21,48 @@ export default function BoxSignIn({username, token}) {
                 <SignOut onClick={logOut}>
                     Sign-out
                 </SignOut >
-    
+
             </BoxSignInWrapper>
         )
 
     } else {
-
-<<<<<<< HEAD
-        <BoxSignInWrapper
-            onMouseEnter={() => {
-                setIsShownCart(false)
-                setIsShownSignIn(true)}}
-=======
         return (
             <BoxSignInWrapper
-            onMouseEnter={() => setIsShownSignIn(true)}
->>>>>>> main
-            onMouseLeave={() => setIsShownSignIn(false)}
-            isShownSignIn={isShownSignIn}
-        >
-            <SignIn >
-                <Link to='/signin'>
-                    Sign-in
-                </Link>
-            </SignIn>
+                onMouseEnter={() => {
+                    setIsShownCart(false)
+                    setIsShownSignIn(true)
+                }}
+                onMouseLeave={() => setIsShownSignIn(false)}
+                isShownSignIn={isShownSignIn}
+            >
+                <SignIn >
+                    <Link to='/signin'>
+                        Sign-in
+                    </Link>
+                </SignIn>
 
-            <SignUp >
-                <Link to='/signup'>
-                    Sign-up
-                </Link>
-            </SignUp>
+                <SignUp >
+                    <Link to='/signup'>
+                        Sign-up
+                    </Link>
+                </SignUp>
 
 
-        </BoxSignInWrapper>
+            </BoxSignInWrapper>
         )
+
+
     }
 
-    async function logOut () {
+    async function logOut() {
 
         try {
-            signOut(getConfig(token));
-            localStorage.removeItem(username);
-            localStorage.removeItem(token);
-            navigate("/");
+            await signOut(getConfig(token));
+            localStorage.removeItem('username');
+            localStorage.removeItem('token');
+            navigate("/signin");
         } catch (error) {
-            alert("Logout falhou! Favor tentar novamente!");
+            alert(error.response.data);
         }
     }
 }

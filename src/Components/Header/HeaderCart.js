@@ -7,80 +7,118 @@ import getConfig from "../../Services/getConfig";
 export default function HeaderCart() {
     const navigate = useNavigate()
 
-    const { isShownCart, setIsShownCart,setIsShownSignIn } = useContext(GlobalContext);
-    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    const { isShownCart, setIsShownCart, setIsShownSignIn } = useContext(GlobalContext);
+    // const cart = JSON.parse(localStorage.getItem("cart"));
+    const cart = [
+        {
+            name: 'Alerta geral',
+            img: 'https://s3.amazonaws.com/vinils3/wp-content/uploads/2016/10/Alcione_alerta-geral_01-300x300.jpg',
+            price: '150,00',
+            artist: 'Alcione',
+            type: 'samba',
+            qtd: 1,
+    
+        }, {
+            name: ' Elis & Tom',
+            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
+            price: '150,00',
+            artist: 'Elis Regina e Tom Jobim',
+            type: 'samba',
+            qtd: 1,
+        },{
+            name: ' Elis & Tom',
+            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
+            price: '150,00',
+            artist: 'Elis Regina e Tom Jobim',
+            type: 'samba',
+            qtd: 1,
+        },{
+            name: ' Elis & Tom',
+            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
+            price: '150,00',
+            artist: 'Elis Regina e Tom Jobim',
+            type: 'samba',
+            qtd: 1,
+        },
+    ]
     const token = localStorage.getItem("token");
 
-   /* useEffect (() => {
-        async function getItens () {
-            try {
-                cartContent = await getCart(getConfig(token));
-                setCartList(cartContent);
-            } catch (error) {
-                console.log("Impossível mostrar itens")
-            }  
-        }
-        
-        if (token) {
-            getItens();
-        }        
-    }, []);    
-    //UI
-    if (!token) {
-        cartContent = "Usuário não logado!";
-        return (
-            <BoxSignInWrapper
-                onMouseEnter={() => setIsShownCart(true)}
-                onMouseLeave={() => setIsShownCart(false)}
-                isShownCart={isShownCart}
-            >
-                <BoxCart >
-                    {cartContent}   
-                </BoxCart>
-            </BoxSignInWrapper>
-        )
-    }
-    if (cartList.length === 0) {
-        cartContent = "Carrinho vazio!"
-    } else {
-        cartContent = cartList
-        
-    }
+
+    /* useEffect (() => {
+         async function getItens () {
+             try {
+                 cartContent = await getCart(getConfig(token));
+                 setCartList(cartContent);
+             } catch (error) {
+                 console.log("Impossível mostrar itens")
+             }  
+         }
+         
+         if (token) {
+             getItens();
+         }        
+     }, []);    
+     //UI
+     if (!token) {
+         cartContent = "Usuário não logado!";
+         return (
+             <BoxSignInWrapper
+                 onMouseEnter={() => setIsShownCart(true)}
+                 onMouseLeave={() => setIsShownCart(false)}
+                 isShownCart={isShownCart}
+             >
+                 <BoxCart >
+                     {cartContent}   
+                 </BoxCart>
+             </BoxSignInWrapper>
+         )
+     }
+     if (cartList.length === 0) {
+         cartContent = "Carrinho vazio!"
+     } else {
+         cartContent = cartList
+         
+     }
+ 
+ 
+     if (cartContent !== cartList) {
+         return (
+             <BoxSignInWrapper
+                 onMouseEnter={() => setIsShownCart(true)}
+                 onMouseLeave={() => setIsShownCart(false)}
+                 isShownCart={isShownCart}
+             >
+                 <BoxCart >
+                     {cartContent}   
+                 </BoxCart>
+             </BoxSignInWrapper>
+         )
+     } else {    */
+
+    const prices = cart.map((item) => Number(item.price));
+    const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
+
+    return (
+
+        <CartWrapper
+            onMouseEnter={() => setIsShownCart(true)}
+            onMouseLeave={() => setIsShownCart(false)}
+            isShownCart={isShownCart}
+        >
+            <BoxCart >
+                
+
+                { cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index} />) }
+            </BoxCart>
+            <p>R$ {totalPrice}</p>
+            <Link to="/cart"><button>Concluir Compra</button></Link>
+        </CartWrapper>
+    )
+}
 
 
-    if (cartContent !== cartList) {
-        return (
-            <BoxSignInWrapper
-                onMouseEnter={() => setIsShownCart(true)}
-                onMouseLeave={() => setIsShownCart(false)}
-                isShownCart={isShownCart}
-            >
-                <BoxCart >
-                    {cartContent}   
-                </BoxCart>
-            </BoxSignInWrapper>
-        )
-    } else {    */
-
-        const prices = cart.map((item) => Number(item.price));
-        const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
-        return (
-
-            <BoxSignInWrapper
-                onMouseEnter={() => setIsShownCart(true)}
-                onMouseLeave={() => setIsShownCart(false)}
-                isShownCart={isShownCart}
-            >
-                <BoxCart >
-                    {cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index}/>)}
-                </BoxCart>
-                <p>R$ {totalPrice}</p>
-                <Link to="/cart"><button>Concluir Compra</button></Link>
-            </BoxSignInWrapper>
-        )
-}      
-
-function CartItem ({name, img, price}) {
+function CartItem({ name, img, price }) {
     return (
         <ItemWrapper>
             <ImgWrapper src={img} />
@@ -89,34 +127,14 @@ function CartItem ({name, img, price}) {
                 <PriceWrapper>
                     <span>R$ {price}</span>
                 </PriceWrapper>
-
-
-        <BoxSignInWrapper
-            onMouseEnter={() => {
-                setIsShownSignIn(false)
-                setIsShownCart(true)}}
-            onMouseLeave={() => setIsShownCart(false)}
-            isShownCart={isShownCart}
-        >
-            <BoxCart >
-                {/* vai receber um axios 
-                com a lista do carrinho */}
-                
-            </BoxCart>
-
-
-
-
-        </BoxSignInWrapper>
-
             </MiniWrapper>
         </ItemWrapper>
     )
 }
 
-const BoxSignInWrapper = styled.div`
+const CartWrapper = styled.div`
 width: ${props => props.isShownCart ? '200px' : '1px'} ;
-height: ${props => props.isShownCart ? '200px' : '1px'} ;
+min-height: ${props => props.isShownCart ? '200px' : '1px'} ;
 top: 60px;
 display: flex;
 flex-direction: column;

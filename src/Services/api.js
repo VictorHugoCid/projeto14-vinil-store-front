@@ -32,6 +32,10 @@ function deleteProduct(id, getConfig) {
     return axios.delete(`${URL}/deleteProduct/${id}`, getConfig)
 }
 
+function changeQtd(body, getConfig) {
+    return axios.put(`${URL}/changeqtd`, body, getConfig)
+}
+
 //Logout
 function signOut(getConfig) {
     return axios.delete(`${URL}/signout`, getConfig)
@@ -49,6 +53,7 @@ export {
     getCart,
     addProduct,
     deleteProduct,
+    changeQtd,
     signOut,
     verifySession
 }

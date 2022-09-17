@@ -15,7 +15,7 @@ export default function Menu() {
             isShown={isShown}
         >
             <p onClick={() => {
-                setStyle('samba')
+                setStyle('Samba')
                 setReRender(!reRender)
             }}>Samba</p>
             <p onClick={() => {

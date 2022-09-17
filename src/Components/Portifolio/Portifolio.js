@@ -17,7 +17,6 @@ export default function Portifolio() {
         getPortifolio(style, getConfig(token))
             .then((res)=>{
                 setArray(res.data)
-                console.log(res)
                 navigate('/home')
             })
     },[reRender]);

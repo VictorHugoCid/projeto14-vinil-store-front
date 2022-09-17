@@ -14,6 +14,10 @@ export default function Menu() {
             onMouseLeave={() => setIsShown(false)}
             isShown={isShown}
         >
+
+            <h1>Home</h1>
+            <Line></Line>
+
             <p onClick={() => {
                 setStyle('Samba')
                 setReRender(!reRender)
@@ -49,10 +53,20 @@ z-index: 1;
 
 transition: all 0.5s ease-out;
 
+h1{
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #caf0f8;
+
+}
 
 p{
     cursor: pointer;
     margin-bottom: 10px;
     color: #caf0f8;
 }
+`
+
+const Line = styled.div`
+border-bottom: 1px solid #caf0f8;
 `

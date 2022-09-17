@@ -69,8 +69,6 @@ export default function HeaderCart() {
         },
     ] */
     const prices = cart.map((item) => Number(item.price));
-    console.log(prices)
-
     const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
 
     //UI

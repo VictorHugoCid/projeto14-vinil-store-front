@@ -18,7 +18,6 @@ export default function Portifolio() {
     useEffect(() =>{
         const promise = getPortifolio(style,getConfig(token))
             .then((res)=>{
-                console.log("1",style)
                 setArray(res.data)
                 navigate('/home')
             })

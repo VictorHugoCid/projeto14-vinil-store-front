@@ -14,7 +14,6 @@ function signIn(body) {
 
 // Home--------------------------------
 function getPortifolio(style, getConfig) {
-    console.log(style)
     return axios.get(`${URL}/home?style=${style}`, getConfig)
 }
 

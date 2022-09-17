@@ -8,6 +8,7 @@ export default function Product({ product }) {
     const {cart} = useContext(GlobalContext);
 
     function addToCart(){
+        console.log(product)
         localStorage.removeItem("cart");
         cart.push(product);
         const serializedCart = JSON.stringify(cart);

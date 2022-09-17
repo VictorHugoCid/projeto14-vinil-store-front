@@ -23,7 +23,7 @@ export default function Home() {
 const HomeWrapper = styled.div`
 width: 100%;
 height: 100vh;
-background-color: purple;
+background-color: #03045e;
 
 overflow-y: scroll;
 

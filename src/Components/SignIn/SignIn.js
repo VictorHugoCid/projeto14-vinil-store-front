@@ -9,7 +9,7 @@ export default function LogIn() {
 
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false);
-    const { token, setToken } = useContext(GlobalContext);
+    // const { setUsername } = useContext(GlobalContext);
 
     const [form, setForm] = useState({
         email: '',
@@ -50,7 +50,10 @@ export default function LogIn() {
         signIn(body)
             .then((res) => {
 
-                setToken(res.data.token);
+                // setToken(res.data.token);
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('username', res.data.username)
+                // setUsername(res.data.username);
     
                 setTimeout(() => {
                     clearForm();
@@ -127,7 +130,7 @@ export default function LogIn() {
 const SinginWrapper = styled.div`
 width: 100vw;
 height: 100vh;
-background-color: #8C11BE;
+background-color: #03045e;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -162,7 +165,7 @@ const ConfirmButton = styled.button`
 width: 87vw;
 height: 7vh;
 border-radius:5px;
-background-color: #A328D6;
+background-color: #023e8a;
 display:flex;
 justify-content: center;
 align-items: center;

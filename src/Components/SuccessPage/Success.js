@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../Header/Header";
 export default function Succes() {
 
-    // vai entrar aqui um novo token como "número do pedido"
+    // vai entrar aqui um novo "token" como "número do pedido"
     // e uma msg bonitinho
 
 
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 width: 100vw;
 height: 100vh;
 
-background: aliceblue;
+background: #03045e;
 
 display: flex;
 justify-content: center;
@@ -35,7 +35,7 @@ const SuccesWrapper = styled.div`
 width: 87vw;
 height: 60vh;
 
-background-color: antiquewhite;
+background-color: #caf0f8;
 
 display: flex;
 flex-direction: column;
@@ -45,5 +45,9 @@ align-items: center;
 h1{
     font-size: 28px;
     margin-bottom: 10px;
+    color: #03045e;
+}
+h2{
+    color: #03045e;
 }
 `

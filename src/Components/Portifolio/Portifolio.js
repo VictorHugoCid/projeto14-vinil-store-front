@@ -11,7 +11,9 @@ export default function Portifolio() {
 
     const navigate = useNavigate()
     const [portfolio, setPortfolio] = useState([]);
-    const {token, style, reRender} = useContext(GlobalContext);
+    const {style, reRender} = useContext(GlobalContext);
+
+    const token = localStorage.getItem('token')
     
     useEffect(() =>{
         getPortifolio(style, getConfig(token))
@@ -43,7 +45,7 @@ flex-wrap: wrap;
 
 overflow-y: scroll;
 
-background-color: #cba6f7;
+background-color: #023e8a;
 position: fixed;
 
 -ms-overflow-style: none;

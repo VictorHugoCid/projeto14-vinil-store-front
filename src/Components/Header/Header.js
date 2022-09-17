@@ -7,53 +7,36 @@ import { useContext, useState } from "react";
 
 import BoxSignIn from "./BoxSignIn";
 import HeaderCart from "./HeaderCart";
-import { verifySession } from "../../Services/api";
+// import { verifySession } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 
 export default function Header() {
 
-    const { token, isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
-    const [ username, setUsername ] = useState("");   
-    if (token) {
-        async function xy () {
-            try {
-                const session = await verifySession(getConfig(token));
-                setUsername(`, ${session.data.username}!`);
-                console.log(username);
-            } catch (error) {
-                console.log(error)
-                alert(error.response.data);
-            }
-        }
-        
-            xy();
-    } else {
-        if (!username) {
-            setUsername("! Login.")
-            console.log(username)
-        }
+    const { isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
+    
+    const username = localStorage.getItem("username");
+
+    let nameLogin;
+    if (!username) {
+        nameLogin = "! Login"
     }
 
     return (
         <HeaderWrapper>
-            <BoxSignIn username={username} />
+            <BoxSignIn />
             <HeaderCart />
             <MenuIcon
                 onMouseEnter={() => setIsShown(true)}
-            // onMouseLeave={() => setIsShown(false)}
             >
                 <AiOutlineMenu
-                    color='#11111b' size='30px'
+                    size='30px'
                 />
             </MenuIcon>
-
             <Title>
                 Vinil-Store
             </Title>
             <Rigth>
-
-
                 <Link
                     to='/signin'
                     onMouseEnter={() => {
@@ -61,7 +44,12 @@ export default function Header() {
                         setIsShownSignIn(true)
                     }}
                 >
-                    {`Hello${username}`}
+                    {(username) ? (
+                        `Hello, ${username}.`
+                    ) : (
+                        `Hello, ${nameLogin}.`
+                    )}
+
                 </Link>
 
                 <FaShoppingCart
@@ -69,7 +57,7 @@ export default function Header() {
                         setIsShownSignIn(false)
                         setIsShownCart(true)
                     }}
-                    margin-left='50px' color='#11111b' size='30px' />
+                    margin-left='50px' color='#03045e' size='30px' />
             </Rigth>
         </HeaderWrapper>
     )
@@ -84,7 +72,9 @@ justify-content: space-between;
 align-items: center;
 position: fixed;
 z-index: 1;
-background-color: #fab387;
+background-color: #00b4d8;
+box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+border-radius: 8px;
 `
 const Rigth = styled.div`
 display: flex;
@@ -93,19 +83,26 @@ align-items: center;
 font-size: 12px;
 a{
     margin-right: 10px;
+    color: #03045e;
+
 }
+
 :hover{
     cursor: pointer;
 }
 `
 const MenuIcon = styled.div`
+color: #03045e;
+
 :hover{
-    color:red;
+    color:#caf0f8;
     cursor: pointer;
 }
 `
 const Title = styled.div`
 width: 200px;
+color: #03045e;
+font-size: 26px;
 display: flex;
 justify-content: center;
 align-items: center;

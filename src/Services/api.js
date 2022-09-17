@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const URL = process.env.REACT_APP_API_BASE_URL;
-const URL = 'http://localhost:5000';
+const URL = process.env.REACT_APP_API_BASE_URL;
+// const URL = 'http://localhost:5000';
 
 // Sign-Up--------------------------------
 function signUp(body) {
@@ -14,7 +14,6 @@ function signIn(body) {
 
 // Home--------------------------------
 function getPortifolio(style, getConfig) {
-    console.log(style)
     return axios.get(`${URL}/home?style=${style}`, getConfig)
 }
 
@@ -42,9 +41,9 @@ function signOut(getConfig) {
 }
 
 // UserStatus
-function verifySession (getConfig) {
-    return axios.get(`${URL}/verifysession`, getConfig)
-}
+// function verifySession (getConfig) {
+//     return axios.get(`${URL}/verifysession`, getConfig)
+// }
 
 export {
     signUp,
@@ -55,5 +54,5 @@ export {
     deleteProduct,
     changeQtd,
     signOut,
-    verifySession
+    // verifySession
 }

@@ -23,6 +23,10 @@ function getCart(getConfig) {
     return axios.get(`${URL}/cart`, getConfig)
 }
 
+function addProduct(body, getConfig) {
+    axios.post(`${URL}/cart`, body, getConfig)
+}
+
 // Delete --------------------------------
 function deleteProduct(id, getConfig) {
     return axios.delete(`${URL}/deleteProduct/${id}`, getConfig)
@@ -43,6 +47,7 @@ export {
     signIn,
     getPortifolio,
     getCart,
+    addProduct,
     deleteProduct,
     signOut,
     verifySession

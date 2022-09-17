@@ -2,16 +2,18 @@ import styled from "styled-components";
 import { FaCartPlus } from 'react-icons/fa'
 import GlobalContext from "../../Context/globalContext";
 import { useContext } from "react";
+import { addProduct } from "../../Services/api";
+import getConfig from "../../Services/getConfig";
 
 export default function Product({ product }) {
 
-    const {cart} = useContext(GlobalContext);
+    const {token, renderCart, setRenderCart } = useContext(GlobalContext);
+    console.log(product)
+    console.log(token)
 
-    function addToCart(){
-        localStorage.removeItem("cart");
-        cart.push(product);
-        const serializedCart = JSON.stringify(cart);
-        localStorage.setItem("cart", serializedCart);
+    async function addToCart(){
+        addProduct(product, getConfig(token));
+        setRenderCart(!renderCart);
     }
 
     return (

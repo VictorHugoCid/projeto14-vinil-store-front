@@ -35,7 +35,6 @@ export default function Header() {
         }
     }
 
-    console.log(username);
     return (
         <HeaderWrapper>
             <BoxSignIn username={username} />

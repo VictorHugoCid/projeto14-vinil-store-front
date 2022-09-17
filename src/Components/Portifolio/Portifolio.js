@@ -10,27 +10,22 @@ import Product from "../Product/Product";
 export default function Portifolio() {
 
     const navigate = useNavigate()
-    const [array, setArray] = useState([]);
+    const [portfolio, setPortfolio] = useState([]);
     const {token, style, reRender} = useContext(GlobalContext);
     
     useEffect(() =>{
         getPortifolio(style, getConfig(token))
             .then((res)=>{
-                console.log("1",style)
-                setArray(res.data)
-                console.log(res)
+                setPortfolio(res.data)
                 navigate('/home')
             })
     },[reRender]);
 
-
-
-
     return (
 
         <PortifolioWrapper>
-            {array.map((value, index) =>
-                <Product key={index} product={value}/>
+            {portfolio.map((product, index) =>
+                <Product key={index} product={product}/>
             ) }
         </PortifolioWrapper>
     )

@@ -41,9 +41,9 @@ function signOut(getConfig) {
 }
 
 // UserStatus
-function verifySession (getConfig) {
-    return axios.get(`${URL}/verifysession`, getConfig)
-}
+// function verifySession (getConfig) {
+//     return axios.get(`${URL}/verifysession`, getConfig)
+// }
 
 export {
     signUp,
@@ -54,5 +54,5 @@ export {
     deleteProduct,
     changeQtd,
     signOut,
-    verifySession
+    // verifySession
 }

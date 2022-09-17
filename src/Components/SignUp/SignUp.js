@@ -143,7 +143,7 @@ export default function SingUp() {
 const Wrapper = styled.div`
 width: 100vw;
 height: 100vh;
-background-color: #8C11BE;
+background-color: #03045e;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -181,7 +181,7 @@ const ConfirmButton = styled.button`
 width: 87vw;
 height: 7vh;
 border-radius:5px;
-background-color: #A328D6;
+background-color: #023e8a;
 display:flex;
 justify-content: center;
 align-items: center;

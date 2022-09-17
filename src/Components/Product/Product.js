@@ -7,24 +7,27 @@ import getConfig from "../../Services/getConfig";
 
 export default function Product({ product }) {
 
-    const {token, renderCart, setRenderCart } = useContext(GlobalContext);
-    console.log(product)
-    console.log(token)
+    const {renderCart, setRenderCart } = useContext(GlobalContext);
+    // console.log(product)
+    // console.log(token)
+
+    const token = localStorage.getItem('token')
 
     async function addToCart(){
         addProduct(product, getConfig(token));
         setRenderCart(!renderCart);
+        console.log('clicou')
     }
 
     return (
-        <ProductWrapper>
+        <ProductWrapper onClick={addToCart}>
             <ImgWrapper src={product.img} />
             <MiniWrapper>
                 <h1>{product.name}</h1>
                 <h2>{product.artist}</h2>
                 <PriceWrapper>
                     <span>R${product.price}</span>
-                    <button onClick={addToCart}>
+                    <button >
                         <FaCartPlus />
                     </button>
                 </PriceWrapper>
@@ -41,7 +44,7 @@ max-width: 180px;
 height: 250px;
 max-height: 250px;
 padding:10px;
-box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 2px 2px 8px 2px rgba(255, 255, 255, 0.8);
 border-radius: 8px;
 
 display: flex;
@@ -57,10 +60,10 @@ overflow-y: scroll;
 
 :hover{
     cursor: pointer;
-    border: 1px solid red;
+    border: 2px solid #caf0f8;
 }
 
-background-color: #f38ba8;/* aliceblue */
+background-color: #caf0f8;
 
 
 -ms-overflow-style: none;
@@ -71,7 +74,7 @@ width: 160px;
 height: 150px;
 border: none;
 
-background-color: aliceblue;
+background-color: #caf0f8;
 
 `
 const MiniWrapper = styled.div`
@@ -81,21 +84,20 @@ padding: 5px;
 
 position: relative;
 
-background-color: aliceblue;
+background-color: #caf0f8;
 
 h1{
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 5px;
+    color: #03045e;
 }
 
 h2{
     font-size: 10px;
     color:gray;
 }
-div{
 
-}
 
 `
 const PriceWrapper = styled.div`
@@ -106,11 +108,11 @@ bottom: 3px;
 
 display: flex;
 justify-content: space-between;
+color: #03045e;
 
 button{
     /* color: green; */
 }
-
 
 `
 

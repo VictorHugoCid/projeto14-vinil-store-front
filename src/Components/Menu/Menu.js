@@ -39,7 +39,7 @@ width: 250px;
 height: 100vh;
 top: 60px;
 
-background-color: #cdd6f4;
+background-color: #03045e;
 opacity: 0.98;
 
 position: fixed;
@@ -53,5 +53,6 @@ transition: all 0.5s ease-out;
 p{
     cursor: pointer;
     margin-bottom: 10px;
+    color: #caf0f8;
 }
 `

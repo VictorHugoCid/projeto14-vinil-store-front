@@ -37,7 +37,7 @@ export default function Cart() {
 
             <Wrapper>
                 <CartWrapper>
-                    Nenhum item adicionado ao carrinho!
+                    <p>Nenhum item adicionado ao carrinho!</p>
                 </CartWrapper>
 
             </Wrapper>
@@ -82,27 +82,33 @@ width: 100vw;
 height: auto;
 min-height: 100vh;
 
-background-color: purple;
+background-color: #03045e;
 
 display: flex;
 justify-content: center;
 `
 const CartWrapper = styled.div`
 width: 87vw;
-height: fit-content;
+min-height: 100px;
+height: 100vh;
 
-background-color:  #cba6f7 ;
+background-color:  #023e8a ;
 margin-top: 60px;
 
 display: flex;
 justify-content: center;
+align-items: center;
 flex-wrap: wrap;
+
+p{
+    color: #caf0f8;
+}
 
 `
 const CheckOut = styled.div`
 width: 70vw;
 height: 20px;
-background-color: grey;
+background-color: #caf0f8;
 
 display: flex;
 align-items: center;

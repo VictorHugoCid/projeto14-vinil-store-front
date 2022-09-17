@@ -8,8 +8,6 @@ import Menu from "../Menu/Menu";
 export default function Home() {
 
     // const { isShown } = useContext(GlobalContext)
-    console.log("AQUI")
-
     return (
         <>
             <Header />

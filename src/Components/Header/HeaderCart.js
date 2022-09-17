@@ -7,16 +7,15 @@ import getConfig from "../../Services/getConfig";
 
 export default function HeaderCart() {
     const navigate = useNavigate()
-    const { token, isShownCart, setIsShownCart, setIsShownSignIn } = useContext(GlobalContext);
+    const { token, renderCart, isShownCart, setIsShownCart, setIsShownSignIn } = useContext(GlobalContext);
     const [cart, setCart] = useState([]);
 
     useEffect (() => {
         async function getItens () {
-            console.log("ENTREIII");
+
             try {
-                const cart1 = await getCart(getConfig(token));
-                console.log(cart1.data);
-                setCart(cart1.data);  
+                const userCart = await getCart(getConfig(token));
+                setCart(userCart.data);  
             } catch (error) {
                 alert(error.response.data);
             }  
@@ -25,7 +24,7 @@ export default function HeaderCart() {
         if (token) {
             getItens();
         }        
-    }, []);    
+    }, [renderCart]);    
 
     if (!token) {
         return (
@@ -106,7 +105,6 @@ export default function HeaderCart() {
         )
      }
 }
-
 
 function CartItem({ name, img, price }) {
     return (

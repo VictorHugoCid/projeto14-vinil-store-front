@@ -19,7 +19,7 @@ export default function Header() {
         async function xy () {
             try {
                 const session = await verifySession(getConfig(token));
-                setUsername(session.data.username);
+                setUsername(`, ${session.data.username}!`);
                 console.log(username);
             } catch (error) {
                 console.log(error)
@@ -27,10 +27,12 @@ export default function Header() {
             }
         }
         
-        xy();
+            xy();
     } else {
-        username = "! Login."
-        console.log(username)
+        if (!username) {
+            setUsername("! Login.")
+            console.log(username)
+        }
     }
 
     console.log(username);
@@ -60,7 +62,7 @@ export default function Header() {
                         setIsShownSignIn(true)
                     }}
                 >
-                    {`Hello, ${username}!`}
+                    {`Hello${username}`}
                 </Link>
 
                 <FaShoppingCart

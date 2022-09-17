@@ -18,6 +18,7 @@ export default function Portifolio() {
             .then((res)=>{
                 console.log("1",style)
                 setArray(res.data)
+                console.log(res)
                 navigate('/home')
             })
     },[reRender]);

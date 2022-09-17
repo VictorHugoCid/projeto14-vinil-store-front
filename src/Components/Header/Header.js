@@ -3,27 +3,42 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import GlobalContext from "../../Context/globalContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import BoxSignIn from "./BoxSignIn";
 import HeaderCart from "./HeaderCart";
+import { verifySession } from "../../Services/api";
+import getConfig from "../../Services/getConfig";
 
 
 export default function Header() {
 
-    const { isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
-
-    const token = localStorage.getItem("token");
-    let username;
+    const { token, isShown, setIsShown, isShownSignIn, setIsShownSignIn, isShownCart, setIsShownCart } = useContext(GlobalContext);
+    const [ username, setUsername ] = useState("");   
     if (token) {
-        username = `, ${localStorage.getItem("username")}`;
+        async function xy () {
+            try {
+                const session = await verifySession(getConfig(token));
+                setUsername(`, ${session.data.username}!`);
+                console.log(username);
+            } catch (error) {
+                console.log(error)
+                alert(error.response.data);
+            }
+        }
+        
+            xy();
     } else {
-        username = "! Login."
+        if (!username) {
+            setUsername("! Login.")
+            console.log(username)
+        }
     }
 
+    console.log(username);
     return (
         <HeaderWrapper>
-            <BoxSignIn username={username} token={token}/>
+            <BoxSignIn username={username} />
             <HeaderCart />
             <MenuIcon
                 onMouseEnter={() => setIsShown(true)}
@@ -57,8 +72,6 @@ export default function Header() {
                     }}
                     margin-left='50px' color='#11111b' size='30px' />
             </Rigth>
-
-
         </HeaderWrapper>
     )
 }

@@ -5,10 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
-export default function BoxSignIn({ username, token }) {
+export default function BoxSignIn({ username }) {
     const navigate = useNavigate()
-    const { isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
-
+    const { token, setToken, isShownSignIn, setIsShownSignIn, setIsShownCart } = useContext(GlobalContext);
 
     if (username !== "! Login.") {
         return (
@@ -58,8 +57,7 @@ export default function BoxSignIn({ username, token }) {
 
         try {
             await signOut(getConfig(token));
-            localStorage.removeItem('username');
-            localStorage.removeItem('token');
+            setToken("");
             navigate("/signin");
         } catch (error) {
             alert(error.response.data);

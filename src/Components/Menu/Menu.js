@@ -8,8 +8,6 @@ export default function Menu() {
     const navigate = useNavigate()
     const { isShown, setIsShown, style, setStyle, reRender, setReRender } = useContext(GlobalContext);
 
-
-
     return (
         <MenuWrapper
             onMouseEnter={() => setIsShown(true)}

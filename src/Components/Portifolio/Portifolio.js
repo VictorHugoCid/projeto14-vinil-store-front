@@ -9,20 +9,19 @@ import Product from "../Product/Product";
 
 export default function Portifolio() {
 
-
     const navigate = useNavigate()
     const [array, setArray] = useState([]);
-    const token = localStorage.getItem('token');
-    const {style, reRender} = useContext(GlobalContext);
+    const {token, style, reRender} = useContext(GlobalContext);
     
     useEffect(() =>{
-        const promise = getPortifolio(style,getConfig(token))
+        getPortifolio(style, getConfig(token))
             .then((res)=>{
                 console.log("1",style)
                 setArray(res.data)
+                console.log(res)
                 navigate('/home')
             })
-    },[reRender])
+    },[reRender]);
 
 
 

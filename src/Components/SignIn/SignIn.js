@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
+import GlobalContext from "../../Context/globalContext";
 import { signIn } from "../../Services/api";
 
 export default function LogIn() {
 
     const navigate = useNavigate();
-    const [disable, setDisable] = useState(false)
+    const [disable, setDisable] = useState(false);
+    const { token, setToken } = useContext(GlobalContext);
 
     const [form, setForm] = useState({
         email: '',
@@ -44,18 +46,19 @@ export default function LogIn() {
             password: form.password,
         }
         
-        const promise = signIn(body)
+        
+        signIn(body)
             .then((res) => {
 
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('username', res.data.username)
-
+                setToken(res.data.token);
+    
                 setTimeout(() => {
                     clearForm();
                     navigate('/home');
                 }, 1000);
             })
             .catch((err) => {
+                console.log(err)
                 alert(err.response.data);
                 clearForm();
 

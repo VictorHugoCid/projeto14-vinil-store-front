@@ -9,20 +9,27 @@ import { changeQtd } from "../../Services/api";
 
 export default function CartProduct({ product }) {
     
-    const [qtd, setQtd] = useState(1);
-    const { token } = useContext(GlobalContext);
+    const {renderCart, setRenderCart} = useContext(GlobalContext);
+    const [qtd, setQtd] = useState(product.qtd);
+    const token = localStorage.getItem("token");
 
-    function deleteIten() {
-        const promise = deleteProduct(product.id, getConfig(token))
+    async function deleteItem() {
+        try {
+            await deleteProduct(product._id, getConfig(token));
+            alert("item excluído com sucesso!");
+            setRenderCart(!renderCart);
+        } catch (error) {
+            
+        }
     }
     
     async function handleInput(e) {
         setQtd(Number(e.target.value));
-        const body = { productId: product._id, newQtd: Number(e.target.value) } 
-        console.log(body);
+        const body = { productId: product._id, newQtd: Number(e.target.value) }; 
         changeQtd (body, getConfig(token));
+        setRenderCart(!renderCart);
     }
-
+    
     return (
 
         <ProductWrapper>
@@ -30,7 +37,7 @@ export default function CartProduct({ product }) {
             <TextWrapper>
                 <h1>{product.name}</h1>
                 <h2>{product.artist}</h2>
-                <h3>{product.price.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}</h3>
+                <h3>{(Number(product.price.replace(",", "."))).toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}</h3>
             </TextWrapper>
             <Funcs>
                 <AddDelete>
@@ -39,13 +46,13 @@ export default function CartProduct({ product }) {
                         type='number'
                         value={qtd}
                         min="1" />
-                    <p onClick={deleteIten}>
+                    <p onClick={deleteItem}>
                         Delete
                     </p>
 
                 </AddDelete>
                 <PriceWrapper>
-                    {product.price.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}
+                    {(Number(product.price.replace(",", "."))*qtd).toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}
                 </PriceWrapper>
             </Funcs>
         </ProductWrapper>

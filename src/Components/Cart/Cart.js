@@ -10,14 +10,12 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const { reRender, setReRender } = useContext(GlobalContext);
+    const { renderCart, reRender, setReRender } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [ cart, setCart] = useState([]);
 
     useEffect(() => {
-        console.log(token)
         async function getItens () {
-            console.log("entrei")
             try {
                 const userCart = await getCart(getConfig(token));
                 setCart(userCart.data);  
@@ -30,7 +28,7 @@ export default function Cart() {
         if (token) {
             getItens();
         }        
-    }, [])
+    }, [renderCart])
 
     if (cart.length === 0) {
         return (
@@ -51,7 +49,7 @@ export default function Cart() {
 
     let total = 0
     for (let k = 0; k < cart.length; k++) {
-        total += Number(cart[k].price * cart[k].qtd);
+        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
     }
 
     return (

@@ -28,7 +28,7 @@ function addProduct(body, getConfig) {
 
 // Delete --------------------------------
 function deleteProduct(id, getConfig) {
-    return axios.delete(`${URL}/deleteProduct/${id}`, getConfig)
+    return axios.delete(`${URL}/cart/${id}`, getConfig)
 }
 
 function changeQtd(body, getConfig) {

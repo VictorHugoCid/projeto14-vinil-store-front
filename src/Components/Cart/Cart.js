@@ -10,15 +10,18 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
-    const { token, reRender, setReRender } = useContext(GlobalContext);
+    const { reRender, setReRender } = useContext(GlobalContext);
+    const token = localStorage.getItem("token");
     const [ cart, setCart] = useState([]);
 
     useEffect(() => {
+        console.log(token)
         async function getItens () {
-
+            console.log("entrei")
             try {
                 const userCart = await getCart(getConfig(token));
                 setCart(userCart.data);  
+                console.log(cart)
             } catch (error) {
                 alert(error.response.data);
             }  

@@ -10,7 +10,7 @@ import { changeQtd } from "../../Services/api";
 export default function CartProduct({ product }) {
     
     const [qtd, setQtd] = useState(1);
-    const { token } = useContext(GlobalContext);
+    const token = localStorage.getItem("token");
 
     function deleteIten() {
         const promise = deleteProduct(product.id, getConfig(token))

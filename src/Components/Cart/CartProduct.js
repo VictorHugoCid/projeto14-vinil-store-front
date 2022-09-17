@@ -1,22 +1,26 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
 import { deleteProduct } from "../../Services/api";
+import GlobalContext from "../../Context/globalContext";
+import { changeQtd } from "../../Services/api";
 
 
 
 export default function CartProduct({ product }) {
-
-    const token = localStorage.getItem('token');
+    
+    const [qtd, setQtd] = useState(1);
+    const { token } = useContext(GlobalContext);
 
     function deleteIten() {
         const promise = deleteProduct(product.id, getConfig(token))
     }
-
-    const [qtd, setQtd] = useState(1);
     
-    function handleInput(e) {
-        setQtd(e.target.value);
+    async function handleInput(e) {
+        setQtd(Number(e.target.value));
+        const body = { productId: product._id, newQtd: Number(e.target.value) } 
+        console.log(body);
+        changeQtd (body, getConfig(token));
     }
 
     return (

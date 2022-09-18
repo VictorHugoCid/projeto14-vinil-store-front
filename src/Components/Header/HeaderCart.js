@@ -68,7 +68,8 @@ export default function HeaderCart() {
             qtd: 1,
         },
     ] */
-    const prices = cart.map((item) => Number(item.price));
+    const prices = cart.map((item) => Number(item.price.replace(",", ".")));
+
     const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);
 
     //UI
@@ -93,7 +94,7 @@ export default function HeaderCart() {
                     <BoxCart >
                         {cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index} />)}
                     </BoxCart>
-                    <p>R$ {totalPrice}</p>
+                    <p>{totalPrice.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}</p>
                     <Link to="/cart"><button>Concluir Compra</button></Link>
                 </CartWrapper>
             )}

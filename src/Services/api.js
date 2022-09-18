@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL = process.env.REACT_APP_API_BASE_URL;
-// const URL = 'http://localhost:5000';
+//const URL = 'http://localhost:5000';
 
 // Sign-Up--------------------------------
 function signUp(body) {
@@ -28,7 +28,7 @@ function addProduct(body, getConfig) {
 
 // Delete --------------------------------
 function deleteProduct(id, getConfig) {
-    return axios.delete(`${URL}/deleteProduct/${id}`, getConfig)
+    return axios.delete(`${URL}/cart/${id}`, getConfig)
 }
 
 function changeQtd(body, getConfig) {

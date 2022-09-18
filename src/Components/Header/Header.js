@@ -47,7 +47,7 @@ export default function Header() {
                     {(username) ? (
                         `Hello, ${username}.`
                     ) : (
-                        `Hello, ${nameLogin}.`
+                        `Hello${nameLogin}.`
                     )}
 
                 </Link>

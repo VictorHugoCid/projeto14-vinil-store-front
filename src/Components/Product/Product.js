@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { FaCartPlus } from 'react-icons/fa'
 import GlobalContext from "../../Context/globalContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { addProduct } from "../../Services/api";
 import getConfig from "../../Services/getConfig";
 
 export default function Product({ product }) {
 
     const {renderCart, setRenderCart } = useContext(GlobalContext);
-    // console.log(product)
-    // console.log(token)
+    const [clicked, setClicked] = useState(false)
 
     const token = localStorage.getItem('token')
 
@@ -22,15 +21,20 @@ export default function Product({ product }) {
     }
 
     return (
-        <ProductWrapper onClick={addToCart}>
+        <ProductWrapper onClick={()=>(
+            addToCart(),
+            setClicked(!clicked)
+            )}>
             <ImgWrapper src={product.img} />
             <MiniWrapper>
                 <h1>{product.name}</h1>
                 <h2>{product.artist}</h2>
-                <PriceWrapper>
+                <PriceWrapper clicked={clicked}>
                     <span>R${product.price}</span>
                     <button >
-                        <FaCartPlus />
+                        <FaCartPlus 
+                        size='25px'
+                        />
                     </button>
                 </PriceWrapper>
 
@@ -110,10 +114,11 @@ bottom: 3px;
 
 display: flex;
 justify-content: space-between;
-color: #03045e;
+align-items: center;
+color:#03045e;
 
 button{
-    /* color: green; */
+    color: ${props=>props.clicked ? 'green' : '#03045e'};
 }
 
 `

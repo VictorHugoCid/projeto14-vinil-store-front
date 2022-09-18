@@ -16,9 +16,9 @@ export default function CartProduct({ product }) {
     function deleteItem() {
 
         if (window.confirm('Tem certeza que deseja deletar o item?')) {
-            const promisse = deleteProduct(product._id, getConfig(token))
+            const promise = deleteProduct(product._id, getConfig(token))
 
-            promisse
+            promise
                 .catch(err => {
                     console.log(err)
                 })

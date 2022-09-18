@@ -2,17 +2,25 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
 import { getCart } from "../../Services/api"
+import { checkOut } from "../../Services/api"
 import GlobalContext from "../../Context/globalContext";
 
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 
-    const { renderCart, reRender, setReRender } = useContext(GlobalContext);
+    const navigate = useNavigate()
+    const { renderCart } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [cart, setCart] = useState([]);
+    let total = 0
+
+    for (let k = 0; k < cart.length; k++) {
+        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
+    }
 
     useEffect(() => {
 
@@ -27,15 +35,25 @@ export default function Cart() {
 
     }, [renderCart])
 
-    function checkOut() {
+    function finish() {
+
+        if(window.confirm('Confirmar compra')){
+
+            const promise = checkOut(total, getConfig(token))
+            promise
+                .then(res=>{
+
+                    navigate('/success')
+                })
+                .catch(err=>{
+                    console.log(err.message)
+                })
+        }
 
     }
 
-    let total = 0
 
-    for (let k = 0; k < cart.length; k++) {
-        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
-    }
+    
 
     return (
         <>
@@ -68,7 +86,7 @@ export default function Cart() {
                                 <h1>Total</h1>
                                 <h1>{Number(total).toLocaleString('pt-BR', { style: "currency", currency: "BRL" })}</h1>
                             </CheckOut>
-                            <Buy onClick={checkOut}>
+                            <Buy onClick={finish}>
                                 Finalizar compra
                             </Buy>
                         </CartWrapper>

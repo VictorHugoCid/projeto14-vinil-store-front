@@ -23,7 +23,7 @@ function getCart(getConfig) {
 }
 
 function addProduct(body, getConfig) {
-    axios.post(`${URL}/cart`, body, getConfig)
+    return axios.post(`${URL}/cart`, body, getConfig)
 }
 
 // Delete --------------------------------

@@ -13,9 +13,12 @@ export default function Product({ product }) {
 
     const token = localStorage.getItem('token')
 
-    async function addToCart(){
-        addProduct(product, getConfig(token));
-        setRenderCart(!renderCart);
+    function addToCart(){
+        const promise = addProduct(product, getConfig(token));
+
+        promise
+        .then(res => setRenderCart(!renderCart))
+        .catch(err => alert(err.response.data))
     }
 
     return (

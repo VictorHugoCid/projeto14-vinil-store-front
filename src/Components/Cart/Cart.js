@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
-import { getCart } from "../../Services/api"
+import { getCart, checkOut } from "../../Services/api"
 import GlobalContext from "../../Context/globalContext";
+import { useNavigate } from "react-router-dom";
 
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
@@ -10,6 +11,7 @@ import Menu from "../Menu/Menu";
 
 export default function Cart() {
 
+    let navigate = useNavigate();
     const { renderCart, reRender, setReRender } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [cart, setCart] = useState([]);
@@ -27,7 +29,21 @@ export default function Cart() {
 
     }, [renderCart])
 
-    function checkOut() {
+    function finish() {
+
+        if(window.confirm('Confirmar compra')){
+
+            const body = {total};
+            const promise = checkOut(body, getConfig(token))
+            promise
+                .then(res=>{
+
+                    navigate('/home')
+                })
+                .catch(err=>{
+                    console.log(err.message)
+                })
+        }
 
     }
 
@@ -68,7 +84,7 @@ export default function Cart() {
                                 <h1>Total</h1>
                                 <h1>{Number(total).toLocaleString('pt-BR', { style: "currency", currency: "BRL" })}</h1>
                             </CheckOut>
-                            <Buy onClick={checkOut}>
+                            <Buy onClick={finish}>
                                 Finalizar compra
                             </Buy>
                         </CartWrapper>

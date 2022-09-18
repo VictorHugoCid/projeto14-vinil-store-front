@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
-import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 

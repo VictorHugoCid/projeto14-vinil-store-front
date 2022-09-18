@@ -40,6 +40,10 @@ function signOut(getConfig) {
     return axios.delete(`${URL}/signout`, getConfig)
 }
 
+function checkOut (body, getConfig) {
+    return axios.post(`${URL}/sales`, body, getConfig)
+}
+
 // UserStatus
 // function verifySession (getConfig) {
 //     return axios.get(`${URL}/verifysession`, getConfig)
@@ -54,5 +58,6 @@ export {
     deleteProduct,
     changeQtd,
     signOut,
+    checkOut
     // verifySession
 }

@@ -16,7 +16,6 @@ export default function Product({ product }) {
     async function addToCart(){
         addProduct(product, getConfig(token));
         setRenderCart(!renderCart);
-        console.log('clicou')
     }
 
     return (

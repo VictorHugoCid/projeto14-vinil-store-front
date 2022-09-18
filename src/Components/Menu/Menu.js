@@ -14,18 +14,35 @@ export default function Menu() {
             onMouseLeave={() => setIsShown(false)}
             isShown={isShown}
         >
+
+            <h1 onClick={() => {
+                setStyle('')
+                navigate('/home')
+                setReRender(!reRender)
+            }}>Home</h1>
+            <Line></Line>
+            <h1>Estilos</h1>
+            <Line></Line>
+            <p onClick={() => {
+                setStyle('')
+                navigate('/home')
+                setReRender(!reRender)
+            }}> {' + Todos'}</p>
             <p onClick={() => {
                 setStyle('Samba')
+                navigate('/home')
                 setReRender(!reRender)
-            }}>Samba</p>
+            }}> {' + Samba'}</p>
             <p onClick={() => {
                 setStyle('Rock')
+                navigate('/home')
                 setReRender(!reRender)
-            }}>Rock</p>
+            }}>   {' + Rock'}</p>
             <p onClick={() => {
                 setStyle('Forró')
+                navigate('/home')
                 setReRender(!reRender)
-            }}>Forró</p>
+            }}>{' + Forró'}</p>
 
 
         </MenuWrapper>
@@ -38,6 +55,7 @@ const MenuWrapper = styled.div`
 width: 250px;
 height: 100vh;
 top: 60px;
+padding: 10px;
 
 background-color: #03045e;
 opacity: 0.98;
@@ -49,10 +67,20 @@ z-index: 1;
 
 transition: all 0.5s ease-out;
 
+h1{
+    cursor: pointer;
+    margin-bottom: 5px;
+    color: #caf0f8;
+}
 
 p{
     cursor: pointer;
     margin-bottom: 10px;
     color: #caf0f8;
 }
+`
+const Line = styled.div`
+border-bottom: 1px solid #caf0f8;
+margin-bottom: 5px;
+
 `

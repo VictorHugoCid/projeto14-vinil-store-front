@@ -34,7 +34,7 @@ export default function Header() {
                 />
             </MenuIcon>
             <Title>
-                Vinil-Store
+               <Link to='/home'>Vinil-Store</Link> 
             </Title>
             <Rigth>
                 <Link

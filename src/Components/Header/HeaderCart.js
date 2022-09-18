@@ -36,38 +36,6 @@ export default function HeaderCart() {
         )
     }
 
-    /* const cart = [
-        {
-            name: 'Alerta geral',
-            img: 'https://s3.amazonaws.com/vinils3/wp-content/uploads/2016/10/Alcione_alerta-geral_01-300x300.jpg',
-            price: '150,00',
-            artist: 'Alcione',
-            type: 'samba',
-            qtd: 1,
-    
-        }, {
-            name: ' Elis & Tom',
-            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
-            price: '150,00',
-            artist: 'Elis Regina e Tom Jobim',
-            type: 'samba',
-            qtd: 1,
-        },{
-            name: ' Elis & Tom',
-            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
-            price: '150,00',
-            artist: 'Elis Regina e Tom Jobim',
-            type: 'samba',
-            qtd: 1,
-        },{
-            name: ' Elis & Tom',
-            img: 'https://imusic.b-cdn.net/images/item/original/829/0042282441829.jpg?regina-elis-antonio-ca-2008-elis-tom-cd&class=original',
-            price: '150,00',
-            artist: 'Elis Regina e Tom Jobim',
-            type: 'samba',
-            qtd: 1,
-        },
-    ] */
     const prices = cart.map((item) => Number(item.price.replace(",", ".")));
 
     const totalPrice = prices.reduce((prev, curr) => prev + curr, 0);

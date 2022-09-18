@@ -15,6 +15,11 @@ export default function Cart() {
     const { renderCart, reRender, setReRender } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [cart, setCart] = useState([]);
+    let total = 0
+
+    for (let k = 0; k < cart.length; k++) {
+        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
+    }
 
     useEffect(() => {
 
@@ -47,11 +52,8 @@ export default function Cart() {
 
     }
 
-    let total = 0
 
-    for (let k = 0; k < cart.length; k++) {
-        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
-    }
+    
 
     return (
         <>

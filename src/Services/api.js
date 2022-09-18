@@ -25,6 +25,10 @@ function getCart(getConfig) {
 function addProduct(body, getConfig) {
     return axios.post(`${URL}/cart`, body, getConfig)
 }
+// clicked
+function setMarked(id, body, getConfig) {
+    return axios.put(`${URL}/portifolio/${id}`, body, getConfig)
+}
 
 // Delete --------------------------------
 function deleteProduct(id, getConfig) {
@@ -40,14 +44,9 @@ function signOut(getConfig) {
     return axios.delete(`${URL}/signout`, getConfig)
 }
 
-function checkOut (body, getConfig) {
+function checkOut(body, getConfig) {
     return axios.post(`${URL}/sales`, body, getConfig)
 }
-
-// UserStatus
-// function verifySession (getConfig) {
-//     return axios.get(`${URL}/verifysession`, getConfig)
-// }
 
 export {
     signUp,
@@ -58,6 +57,6 @@ export {
     deleteProduct,
     changeQtd,
     signOut,
-    checkOut
-    // verifySession
+    checkOut,
+    setMarked
 }

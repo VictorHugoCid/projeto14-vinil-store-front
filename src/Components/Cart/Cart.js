@@ -37,8 +37,9 @@ export default function Cart() {
             const promise = checkOut(body, getConfig(token))
             promise
                 .then(res=>{
-
-                    navigate('/home')
+                    const sale = res.data;
+                    console.log(res)
+                    navigate('/success', {state: {sale}});
                 })
                 .catch(err=>{
                     console.log(err.message)

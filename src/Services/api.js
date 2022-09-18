@@ -40,9 +40,8 @@ function signOut(getConfig) {
     return axios.delete(`${URL}/signout`, getConfig)
 }
 
-// CheckOut
-function checkOut(total, getConfig) {
-    return axios.post(`${URL}/checkout`, total, getConfig)
+function checkOut (body, getConfig) {
+    return axios.post(`${URL}/sales`, body, getConfig)
 }
 
 export {

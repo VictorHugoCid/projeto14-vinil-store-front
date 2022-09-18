@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
-import { getCart } from "../../Services/api"
-import { checkOut } from "../../Services/api"
+import { getCart, checkOut } from "../../Services/api"
 import GlobalContext from "../../Context/globalContext";
+import { useNavigate } from "react-router-dom";
 
 import CartProduct from "./CartProduct";
 import Header from "../Header/Header";
@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 
-    const navigate = useNavigate()
-    const { renderCart } = useContext(GlobalContext);
+    let navigate = useNavigate();
+    const { renderCart, reRender, setReRender } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [cart, setCart] = useState([]);
     let total = 0
@@ -39,11 +39,12 @@ export default function Cart() {
 
         if(window.confirm('Confirmar compra')){
 
-            const promise = checkOut(total, getConfig(token))
+            const body = {total};
+            const promise = checkOut(body, getConfig(token))
             promise
                 .then(res=>{
 
-                    navigate('/success')
+                    navigate('/home')
                 })
                 .catch(err=>{
                     console.log(err.message)

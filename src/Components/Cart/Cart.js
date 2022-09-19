@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
-import { getCart, checkOut } from "../../Services/api"
+import { getCart, checkOut, setMarked } from "../../Services/api"
 import GlobalContext from "../../Context/globalContext";
 import { useNavigate } from "react-router-dom";
 
@@ -40,10 +40,15 @@ export default function Cart() {
 
             const body = {total};
             const promise = checkOut(body, getConfig(token))
+        
             promise
-                .then(res=>{
-
-                    navigate('/home')
+                .then(res => {
+                    cart.map(item => {
+                        const body = {_id: item.productId, clicked: true}
+                        setMarked(item._id, body, getConfig(token))
+                    });
+                    const sale = res.data;
+                    navigate('/success', {state: {sale}})
                 })
                 .catch(err=>{
                     console.log(err.message)

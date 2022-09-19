@@ -31,7 +31,6 @@ export default function Product({ product }) {
 
         } else {
             console.log('delete')
-            console.log(product._id)
 
             const promise = deleteProduct(product._id, getConfig(token))
             promise
@@ -83,7 +82,7 @@ max-width: 180px;
 height: 250px;
 max-height: 250px;
 padding:10px;
-box-shadow: 2px 2px 8px 2px rgba(255, 255, 255, 0.8);
+box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.8);
 border-radius: 8px;
 
 display: flex;
@@ -100,6 +99,7 @@ overflow-y: scroll;
 :hover{
     cursor: pointer;
     border: 2px solid #caf0f8;
+    box-shadow: 2px 2px 8px 2px rgba(150, 150, 150, 0.8);
 }
 
 background-color: #caf0f8;

@@ -62,7 +62,7 @@ export default function HeaderCart() {
                     <BoxCart >
                         {cart.map((item, index) => <CartItem name={item.name} img={item.img} price={item.price} key={index} />)}
                     </BoxCart>
-                    <p>{totalPrice.toLocaleString('pt-BR', {style:"currency", currency:"BRL"})}</p>
+                    <p>{totalPrice.toLocaleString('pt-BR', { style: "currency", currency: "BRL" })}</p>
                     <Link to="/cart"><button>Concluir Compra</button></Link>
                 </CartWrapper>
             )}
@@ -122,15 +122,18 @@ justify-content: center;
 align-items: center;
 color: #caf0f8;
 
+
 :hover{
     cursor: pointer;
 }
 `
 const ItemWrapper = styled.div`
-    display: flex;
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color: #caf0f8;
+display: flex;
+margin-bottom: 5px;
+padding: 5px;
+background-color: #caf0f8;
+box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.8);
+border-radius: 5px;
 `
 const ImgWrapper = styled.img`
 width: 60px;

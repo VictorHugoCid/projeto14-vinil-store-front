@@ -79,7 +79,7 @@ export default function SingUp() {
     return (
 
         <Wrapper>
-            <HomeTitle>My Wallet</HomeTitle>
+            <HomeTitle>Vinil Store</HomeTitle>
             <FormWrapper onSubmit={sendForm}>
                 <InputLogin
                     type='name'

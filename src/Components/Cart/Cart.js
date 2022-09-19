@@ -27,6 +27,7 @@ export default function Cart() {
         userCart
             .then((res) => {
                 setCart(res.data)
+                
             })
             .catch((err) => {
                 console.log(err.message)
@@ -46,7 +47,9 @@ export default function Cart() {
                     cart.map(item => {
                         const body = {_id: item.productId, clicked: true}
                         setMarked(item._id, body, getConfig(token))
+
                     });
+
                     const sale = res.data;
                     navigate('/success', {state: {sale}})
                 })
@@ -81,6 +84,7 @@ export default function Cart() {
 
                     <Wrapper>
                         <CartWrapper cart={cart.length}>
+
                             {cart.map((value, index) =>
                                 <CartProduct
                                     key={index}
@@ -91,8 +95,13 @@ export default function Cart() {
                                 <h1>Total</h1>
                                 <h1>{Number(total).toLocaleString('pt-BR', { style: "currency", currency: "BRL" })}</h1>
                             </CheckOut>
+
                             <Buy onClick={finish}>
                                 Finalizar compra
+                            </Buy>
+
+                            <Buy onClick={() => navigate('/home')}>
+                                Continuar comprando
                             </Buy>
                         </CartWrapper>
 
@@ -108,7 +117,6 @@ width: 100vw;
 height: auto;
 min-height: 100vh;
 
-
 background-color: #03045e;
 
 display: flex;
@@ -123,6 +131,7 @@ height: 100%;
 padding-bottom: 50px;
 
 background-color:  #023e8a ;
+
 margin-top: 60px;
 
 display: flex;
@@ -143,18 +152,25 @@ width: 70vw;
 height: 30px;
 background-color: #caf0f8;
 margin-top: 10px;
+margin-bottom: 20px;
 padding: 5px;
+box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.8);
+border-radius: 8px;
 
 display: flex;
 
 align-items: center;
 justify-content: space-between;
+
 `
 const Buy = styled.button`
 width: 200px;
 height: 40px;
 background-color:#caf0f8;
-margin-top: 30px;
+margin-bottom: 10px;
+
+box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.8);
+border-radius: 8px;
 
 display: flex;
 justify-content: center;

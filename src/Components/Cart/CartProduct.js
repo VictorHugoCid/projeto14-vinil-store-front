@@ -3,16 +3,17 @@ import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
 import { deleteProduct } from "../../Services/api";
 import GlobalContext from "../../Context/globalContext";
-import { changeQtd } from "../../Services/api";
+import { changeQtd, setMarked } from "../../Services/api";
 
 
 
 export default function CartProduct({ product }) {
 
-    const { renderCart, setRenderCart } = useContext(GlobalContext)
+    const { reRender, setReRender, renderCart, setRenderCart } = useContext(GlobalContext)
     const [qtd, setQtd] = useState(product.qtd);
     const token = localStorage.getItem("token");
 
+    const body = {...product}
     function deleteItem() {
 
         if (window.confirm('Tem certeza que deseja deletar o item?')) {
@@ -25,6 +26,15 @@ export default function CartProduct({ product }) {
                 .then(res => {
                     setRenderCart(!renderCart)
                 })
+
+                console.log(product)
+            const update = setMarked(product.productId, body, getConfig(token))
+            update.then(res => {
+                setReRender(!reRender)
+                console.log(product)
+
+            })
+                .catch(err => console.log(err))
         }
     }
 
@@ -72,6 +82,8 @@ margin-top: 10px;
 padding: 10px;
 
 background-color: #caf0f8;
+box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.8);
+border-radius: 8px;
 
 display: flex;
 justify-content: flex-start;

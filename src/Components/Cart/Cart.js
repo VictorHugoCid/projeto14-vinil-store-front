@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import getConfig from "../../Services/getConfig";
-import { getCart, checkOut } from "../../Services/api"
+import { getCart, checkOut, setMarked } from "../../Services/api"
 import GlobalContext from "../../Context/globalContext";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,11 @@ export default function Cart() {
     const { renderCart, reRender, setReRender } = useContext(GlobalContext);
     const token = localStorage.getItem("token");
     const [cart, setCart] = useState([]);
+    let total = 0
+
+    for (let k = 0; k < cart.length; k++) {
+        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
+    }
 
     useEffect(() => {
 
@@ -35,11 +40,15 @@ export default function Cart() {
 
             const body = {total};
             const promise = checkOut(body, getConfig(token))
+        
             promise
-                .then(res=>{
+                .then(res => {
+                    cart.map(item => {
+                        const body = {_id: item.productId, clicked: true}
+                        setMarked(item._id, body, getConfig(token))
+                    });
                     const sale = res.data;
-                    console.log(res)
-                    navigate('/success', {state: {sale}});
+                    navigate('/success', {state: {sale}})
                 })
                 .catch(err=>{
                     console.log(err.message)
@@ -48,11 +57,8 @@ export default function Cart() {
 
     }
 
-    let total = 0
 
-    for (let k = 0; k < cart.length; k++) {
-        total += Number(cart[k].price.replace(",", ".")) * cart[k].qtd;
-    }
+    
 
     return (
         <>

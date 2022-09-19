@@ -13,8 +13,6 @@ export default function Succes() {
             <ItemWrapper>
                 <img src={img} alt={`${name} album cover`}/>
                 <p>{name}</p>
-                {/* <p>{price}</p>
-                <p>{qtd}</p> */}
             </ItemWrapper>
         )
     } 
@@ -55,38 +53,49 @@ justify-content: center;
 align-items: center;
 `
 const SuccesWrapper = styled.div`
-width: 70vw;
-min-height: 30vh;
+
+width: 87vw;
+min-height: 60vh;
+border-radius: 5px;
+box-sizing: border-box;
+padding: 15px;
 
 background-color: #caf0f8;
 
 display: flex;
 flex-direction: column;
-justify-content: center;
+
 align-items: center;
 padding: 10px;
 border-radius: 5px;
 
-h1{
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #03045e;
-}
-h2{
-    color: #03045e;
-}
+    h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: #03045e;
+    }
+
+    h2 {
+        color: #03045e;
+        border-bottom: 1px solid #03045e;
+        text-align: center;
+        padding-bottom: 25px;
+        width: 100%;
+    }
+`
+const CartItems = styled.div`
+    margin-top: 15px;
 `
 const ItemWrapper = styled.div`
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
 
     img {
         width: 80px;
         height: 80px;
         margin-right: 15px;
-        
     }
 
     p {
@@ -94,7 +103,4 @@ const ItemWrapper = styled.div`
     font-weight: 700;
     color: #03045e;
     }
-`
-const CartItems = styled.div`
-    margin-top: 15px;
 `

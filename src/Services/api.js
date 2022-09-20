@@ -5,7 +5,7 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Sign-Up--------------------------------
 function signUp(body) {
-    return axios.post(`${URL}/signup`, body)
+    return axios.post(`https://projeto14-vinil-store.herokuapp.com/signup`, body)
 }
 // LogIn
 function signIn(body) {
@@ -14,7 +14,7 @@ function signIn(body) {
 
 // Home--------------------------------
 function getPortifolio(style, getConfig) {
-    return axios.get(`${URL}/home?style=${style}`, getConfig)
+    return axios.get(`https://projeto14-vinil-store.herokuapp.com/home?style=${style}`, getConfig)
 }
 
 // Cart------------------------------
